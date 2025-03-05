@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:fontFamily="@font/open_sans"
-            android:text="Has participado en " />
+            android:text="@string/text1_participations" />
 
         <TextView
             android:id="@+id/textView6"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:fontFamily="@font/open_sans"
-            android:text=" carreras" />
+            android:text="@string/text2_participations" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
