@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.dam.ciclismoApp.databinding.FragmentRacesBinding
 
 class RacesFragment : Fragment() {
@@ -33,4 +34,8 @@ class RacesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+}
+
+class ViewHolderRut(view: View) : RecyclerView.ViewHolder(view) {
+    var itemBinding = ItemRutasRecyclerviewLoginBinding.bind(view)
 }

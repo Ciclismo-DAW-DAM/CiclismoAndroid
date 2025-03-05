@@ -49,4 +49,5 @@
     </string>
     <string name="text1_participations">"Has participado en "</string>
     <string name="text2_participations">" carreras"</string>
+    <string name="text1_races">" carreras encontradas"</string>
 </resources>
