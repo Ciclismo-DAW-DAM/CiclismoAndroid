@@ -1,4 +1,4 @@
-package com.dam.ciclismoApp.ui.notifications
+package com.dam.ciclismoApp.ui.participations
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.dam.ciclismoApp.databinding.FragmentProfileBinding
+import com.dam.ciclismoApp.databinding.FragmentParticipationsBinding
 
-class ProfileFragment : Fragment() {
+class ParticipationsFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentParticipationsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val dashboardViewModel =
+            ViewModelProvider(this).get(ParticipationsViewModel::class.java)
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentParticipationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textView2
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textView
+        dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

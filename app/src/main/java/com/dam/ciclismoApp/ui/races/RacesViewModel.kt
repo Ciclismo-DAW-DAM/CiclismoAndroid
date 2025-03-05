@@ -1,4 +1,4 @@
-package com.dam.ciclismoApp.ui.home
+package com.dam.ciclismoApp.ui.races
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

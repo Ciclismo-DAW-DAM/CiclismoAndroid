@@ -1,10 +1,10 @@
-package com.dam.ciclismoApp.ui.dashboard
+package com.dam.ciclismoApp.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ParticipationsViewModel : ViewModel() {
+class LoginViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

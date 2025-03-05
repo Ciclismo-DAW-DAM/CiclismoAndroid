@@ -1,19 +1,23 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/navigation_home">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_race">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.dam.ciclismoApp.ui.home.HomeFragment"
-        android:label="Home"/>
+        android:id="@+id/navigation_race"
+        android:name="com.dam.ciclismoApp.ui.races.RacesFragment"
+        android:label="Race"
+        tools:layout="@layout/fragment_races" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.dam.ciclismoApp.ui.dashboard.DashboardFragment"
-        android:label="Dashboard"/>
+        android:id="@+id/navigation_participations"
+        android:name="com.dam.ciclismoApp.ui.participations.ParticipationsFragment"
+        android:label="Participation"
+        tools:layout="@layout/fragment_participations" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.dam.ciclismoApp.ui.notifications.NotificationsFragment"
-        android:label="Notifications"/>
+        android:id="@+id/navigation_profile"
+        android:name="com.dam.ciclismoApp.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

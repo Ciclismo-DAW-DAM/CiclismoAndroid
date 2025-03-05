@@ -1,4 +1,4 @@
-package com.dam.ciclismoApp.ui.dashboard
+package com.dam.ciclismoApp.ui.races
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.dam.ciclismoApp.databinding.FragmentParticipationsBinding
+import com.dam.ciclismoApp.databinding.FragmentRacesBinding
 
-class ParticipationsFragment : Fragment() {
+class RacesFragment : Fragment() {
 
-    private var _binding: FragmentParticipationsBinding? = null
+    private var _binding: FragmentRacesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class ParticipationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(ParticipationsViewModel::class.java)
+        val homeViewModel =
+            ViewModelProvider(this).get(RacesViewModel::class.java)
 
-        _binding = FragmentParticipationsBinding.inflate(inflater, container, false)
+        _binding = FragmentRacesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textView
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textHome
+        homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
