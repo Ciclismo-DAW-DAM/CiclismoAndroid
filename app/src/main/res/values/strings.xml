@@ -47,4 +47,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="text1_participations">"Has participado en "</string>
+    <string name="text2_participations">" carreras"</string>
+    <string name="text1_races">" carreras encontradas"</string>
 </resources>
