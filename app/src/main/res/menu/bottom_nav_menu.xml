@@ -4,7 +4,8 @@
     <item
         android:id="@+id/navigation_race"
         android:icon="@drawable/ic_race"
-        android:title="@string/title_races" />
+        android:title="@string/title_races"
+        />
 
     <item
         android:id="@+id/navigation_participations"
