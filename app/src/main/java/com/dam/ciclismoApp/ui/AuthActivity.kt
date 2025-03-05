@@ -1,4 +1,4 @@
-package com.dam.ciclismoApp.vista
+package com.dam.ciclismoApp.ui
 
 
 import android.os.Bundle

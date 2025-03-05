@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CiclismoApp"
         tools:targetApi="31">
         <activity
-            android:name=".vista.AuthActivity"
+            android:name=".ui.AuthActivity"
             android:exported="true"
             android:theme="@style/Theme.CiclismoApp" >
             <intent-filter>
@@ -21,17 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< Updated upstream
         <activity
-            android:name=".vista.MainActivity"
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.CiclismoApp"
             android:exported="true"
             >
         </activity>
-=======
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
->>>>>>> Stashed changes
     </application>
 
 </manifest>

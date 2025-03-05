@@ -1,13 +1,21 @@
 package com.dam.ciclismoApp.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel : ViewModel() {
+    private lateinit var user : String
+    private lateinit var pass : String
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    fun getUser(): String {
+        return user
     }
-    val text: LiveData<String> = _text
+    fun setUser(value: String) {
+        user = value
+    }
+    fun getPass(): String {
+        return pass
+    }
+    fun setPass(value: String) {
+            pass = value
+        }
 }
