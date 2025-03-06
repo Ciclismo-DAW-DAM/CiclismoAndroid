@@ -15,6 +15,7 @@
     <color name="orange_spring">#FFC107</color>
     <color name="red_spring">#E91E63</color>
     <color name="blue_spring_dark">#001f3d</color>
+    <color name="blue_spring_dark_darker">#020D24</color>
     <color name="blue_spring_dark_soft">#50001f3d</color>
     <color name="white_soft">#20FFFFFF</color>
 </resources>

@@ -5,19 +5,19 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_spring_dark">
+    android:background="@drawable/shape_gradient_base">
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="600dp"
         android:layout_height="match_parent"
-        android:alpha="0.2"
+        android:alpha="0.1"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_shade_app"
-        app:tint="@color/green_spring" />
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/textView4"
