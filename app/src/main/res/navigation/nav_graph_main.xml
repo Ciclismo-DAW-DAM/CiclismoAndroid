@@ -28,5 +28,5 @@
         android:id="@+id/updateUserFragment"
         android:name="com.dam.ciclismoApp.ui.profile.derivated.UpdateUserFragment"
         android:label="fragment_update_user"
-        tools:layout="@layout/fragment_update_user" />
+        tools:layout="@layout/dialog_update_user" />
 </navigation>

@@ -53,7 +53,7 @@ class RacesFragment : Fragment() {
                                     putExtra("NAVIGATE_TO_FRAGMENT", "LoginFragment")
                                 }
                                 startActivity(intent)
-                                requireActivity().finish() 
+                                requireActivity().finish()
                             }
                         )
                     } else {

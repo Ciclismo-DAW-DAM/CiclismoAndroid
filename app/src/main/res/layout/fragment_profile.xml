@@ -26,24 +26,23 @@
         android:id="@+id/btnDeleteUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/green_spring"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:fontFamily="@font/open_sans_bold"
         android:text="Eliminar Usuario"
-        android:textColor="@color/blue_spring_dark"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCloseSesion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/green_spring"
+        android:backgroundTint="@color/grey"
         android:fontFamily="@font/open_sans_bold"
         android:text="Cerrar Sesión"
         android:textColor="@color/blue_spring_dark"
@@ -52,7 +51,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/btnDeleteUser" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
     <TextView
         android:id="@+id/txtUser"

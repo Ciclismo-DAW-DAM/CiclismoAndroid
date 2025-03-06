@@ -1,14 +1,18 @@
 package com.dam.ciclismoApp.utils
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import com.dam.ciclismoApp.R
 
 object DialogManager {
@@ -62,6 +66,26 @@ object DialogManager {
         loadingDialog?.dismiss()
         loadingDialog = null
     }
+
+    fun showCustomDialog(
+        context: Context,
+        binding: ViewBinding,
+        isCancelableOnTouchOutside: Boolean,
+        onDialogReady: (Dialog) -> Unit
+    ) {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(binding.root)
+        dialog.window?.setLayout((context.resources.displayMetrics.widthPixels * 0.9).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.setCanceledOnTouchOutside(isCancelableOnTouchOutside)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        onDialogReady(dialog)
+        dialog.show()
+    }
+
+
+
+
 }
 
 

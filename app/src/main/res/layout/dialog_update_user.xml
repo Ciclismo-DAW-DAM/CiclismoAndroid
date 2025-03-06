@@ -3,51 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue_spring_dark"
-    tools:context=".ui.profile.derivated.UpdateUserFragment">
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog"
+    android:paddingLeft="16dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Actualizar usuario"
-        android:textColor="@color/white"
+        android:textColor="@color/blue_spring_dark"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:layout_constraintVertical_bias="0.22000003" />
-
-    <TextView
-        android:id="@+id/txtEmailUpd"
-        android:layout_width="66dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="16dp"
-        android:text="Email"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <EditText
         android:id="@+id/etUserUpd"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/custom_edittext_up"
+        android:backgroundTint="@color/blue_spring_dark_soft"
         android:fontFamily="@font/open_sans"
         android:hint="Usuario"
         android:padding="16dp"
-        android:textColorHint="@color/grey"
+        android:textColor="@color/blue_spring_dark"
+        android:textColorHint="@color/blue_spring_dark_soft"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmailUpd" />
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etConfNewPassUpd"
@@ -58,8 +52,8 @@
         app:endIconMode="password_toggle"
         app:endIconTint="@color/blue_spring_dark"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/etUserUpd"
+        app:layout_constraintStart_toStartOf="@+id/etUserUpd"
         app:layout_constraintTop_toBottomOf="@+id/etUserUpd">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -67,12 +61,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:backgroundTint="@color/blue_spring_dark_soft"
             android:fontFamily="@font/open_sans"
-            android:hint="Nueva contraseña"
 
+            android:hint="Nueva contraseña"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColorHint="@color/grey"
+            android:textColor="@color/blue_spring_dark"
+            android:textColorHint="@color/blue_spring_dark_soft"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,8 +82,8 @@
         app:endIconMode="password_toggle"
         app:endIconTint="@color/blue_spring_dark"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/etConfNewPassUpd"
+        app:layout_constraintStart_toStartOf="@+id/etConfNewPassUpd"
         app:layout_constraintTop_toBottomOf="@+id/etConfNewPassUpd">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -95,12 +91,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_down"
+            android:backgroundTint="@color/blue_spring_dark_soft"
             android:fontFamily="@font/open_sans"
-            android:hint="Confirmar nueva contraseña"
 
+            android:hint="Confirmar nueva contraseña"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColorHint="@color/grey"
+            android:textColor="@color/blue_spring_dark"
+            android:textColorHint="@color/blue_spring_dark_soft"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,37 +107,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:background="@drawable/custom_btn_green"
-        android:backgroundTint="@color/green_spring"
+        android:background="@color/green_spring"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Actualizar"
-        android:textColor="@color/blue_spring_dark"
+        android:text="Guardar cambios"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+    <ImageView
+        android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="32dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="32dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="32dp" />
+        android:padding="8dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
