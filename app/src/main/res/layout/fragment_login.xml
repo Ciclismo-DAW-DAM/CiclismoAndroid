@@ -34,7 +34,7 @@
         android:padding="16dp"
         android:textColorHint="@color/grey"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        app:layout_constraintBottom_toTopOf="@+id/etConfNewPassUpd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etPassword"
+        android:id="@+id/etConfNewPassUpd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etUsername">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword2"
+            android:id="@+id/etPasswordUpd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_down"
@@ -85,7 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/etConfNewPassUpd" />
 
     <ImageView
         android:id="@+id/imageView"
