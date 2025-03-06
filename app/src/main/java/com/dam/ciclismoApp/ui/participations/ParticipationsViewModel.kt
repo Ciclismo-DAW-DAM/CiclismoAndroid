@@ -10,7 +10,7 @@ class ParticipationsViewModel : ViewModel() {
         value = 0
     }
     private var _mLisParticipations = MutableLiveData<List<String>>().apply {
-        value = listOf("1", "2", "3")
+        value = listOf("1", "2", "3", "4", "5", "6")
     }
     //endregion
 
