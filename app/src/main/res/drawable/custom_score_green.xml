@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo con borde -->
+    <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/green_spring"/> <!-- Color de fondo -->
+            <corners
+                android:topLeftRadius="400dp"
+                android:topRightRadius="5dp"
+                android:bottomLeftRadius="5dp"
+                android:bottomRightRadius="5dp"/>
+            <stroke android:width="0dp" android:color="@color/white"/> <!-- Borde -->
+        </shape>
+    </item>
+
+</layer-list>

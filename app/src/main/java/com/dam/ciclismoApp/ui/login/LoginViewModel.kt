@@ -17,5 +17,5 @@ class LoginViewModel : ViewModel() {
     }
     fun setPass(value: String) {
             pass = value
-        }
+    }
 }

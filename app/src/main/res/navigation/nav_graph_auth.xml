@@ -4,7 +4,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.app.ui.splash.SplashFragment"
+        android:name="com.dam.ciclismoApp.ui.SplashFragment"
         android:label="Splash Screen">
         <action
             android:id="@+id/action_splash_to_login"
