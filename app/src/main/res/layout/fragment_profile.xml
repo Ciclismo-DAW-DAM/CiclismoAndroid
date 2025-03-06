@@ -45,7 +45,7 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/green_spring"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Actualizar Usuario"
+        android:text="Cerrar Sesión"
         android:textColor="@color/blue_spring_dark"
         android:textSize="16sp"
         app:cornerRadius="5dp"
@@ -173,79 +173,86 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="0"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        tools:layout_editor_absoluteY="96dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUser3" />
 
     <TextView
         android:id="@+id/txtPrefLoc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="Ninguna"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        tools:layout_editor_absoluteY="132dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTotalRaces" />
 
     <TextView
         android:id="@+id/txtPrefCat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="Ninguna"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        tools:layout_editor_absoluteY="167dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrefLoc" />
 
     <TextView
         android:id="@+id/txtKmTravelled"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="0"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        tools:layout_editor_absoluteY="203dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrefCat" />
 
     <TextView
         android:id="@+id/txtTotalRaces"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="0"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        tools:layout_editor_absoluteY="96dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUser3" />
 
     <TextView
         android:id="@+id/txtTotalWins"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="0"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        tools:layout_editor_absoluteY="238dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtKmTravelled" />
 
     <TextView
         android:id="@+id/txtTotalSpent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="0€"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        tools:layout_editor_absoluteY="274dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTotalWins" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
