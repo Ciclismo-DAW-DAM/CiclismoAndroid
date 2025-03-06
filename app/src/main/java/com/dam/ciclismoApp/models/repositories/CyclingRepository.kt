@@ -10,12 +10,12 @@ class CyclingRepository {
     val cyclingApi:CyclingApi
     init {
         cyclingApi = Retrofit.Builder()
-            .baseUrl("localhost/api/")
+            .baseUrl("http://192.168.40.87:8000/api/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
     }
 
     suspend fun getRaces():List<Race> = cyclingApi.getRaces()
-    suspend fun getRace(id:Int ): Race = cyclingApi.getRace(id)
+    suspend fun getRace(id:Int): Race = cyclingApi.getRace(id)
 }

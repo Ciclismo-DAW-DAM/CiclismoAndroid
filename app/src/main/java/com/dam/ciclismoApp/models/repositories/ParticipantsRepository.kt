@@ -10,7 +10,7 @@ class ParticipantsRepository {
     val participantsApi:ParticipantsApi
     init {
         participantsApi = Retrofit.Builder()
-            .baseUrl("localhost/api/")
+            .baseUrl("http://192.168.40.87:8000/api/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
