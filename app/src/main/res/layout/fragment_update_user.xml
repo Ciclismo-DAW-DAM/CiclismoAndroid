@@ -9,113 +9,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etConfNewPassUpd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:textColorHint="@color/grey"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/blue_spring_dark"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/etConfNewPassUpd">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPasswordUpd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_edittext_down"
-            android:fontFamily="@font/open_sans"
-            android:hint="Confirmar nueva contraseña"
-
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:textColorHint="@color/grey"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnUpdateUser"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green_spring"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Actualizar"
-        android:textColor="@color/blue_spring_dark"
-        android:textSize="16sp"
-        app:cornerRadius="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        tools:layout_editor_absoluteY="464dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etConfNewPassUpd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:textColorHint="@color/grey"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/blue_spring_dark"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/etUserUpd">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPasswordUpd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_edittext_down"
-            android:fontFamily="@font/open_sans"
-            android:hint="Nueva contraseña"
-
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:textColorHint="@color/grey"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/etUserUpd"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/custom_edittext_up"
-        android:fontFamily="@font/open_sans"
-        android:hint="Usuario"
-        android:padding="16dp"
-        android:textColorHint="@color/grey"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmailUpd" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="32dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="32dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="32dp" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -138,5 +31,115 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/etUserUpd"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_edittext_up"
+        android:fontFamily="@font/open_sans"
+        android:hint="Usuario"
+        android:padding="16dp"
+        android:textColorHint="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmailUpd" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etConfNewPassUpd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textColorHint="@color/grey"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/blue_spring_dark"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/etUserUpd">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPasswordUpd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/open_sans"
+            android:hint="Nueva contraseña"
+
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="@color/grey"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textColorHint="@color/grey"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/blue_spring_dark"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/etConfNewPassUpd">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPasswordUpdConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edittext_down"
+            android:fontFamily="@font/open_sans"
+            android:hint="Confirmar nueva contraseña"
+
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="@color/grey"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUpdateUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/custom_btn_green"
+        android:backgroundTint="@color/green_spring"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Actualizar"
+        android:textColor="@color/blue_spring_dark"
+        android:textSize="16sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="32dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
