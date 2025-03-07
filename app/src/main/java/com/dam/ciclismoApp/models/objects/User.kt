@@ -1,5 +1,6 @@
 package com.dam.ciclismoApp.models.objects
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.io.Serializable
 
@@ -9,5 +10,10 @@ data class User(
     val email:String,
     val roles:List<String>,
     val name:String,
-    val banned:Boolean
+    val password:String,
+    val banned:Boolean,
+    @Json(name = "cyclingParticipants") val cyclingParticipants:List<Participant>,
+    val age:Int,
+    val gender:String,
+    val image:String
 ):Serializable

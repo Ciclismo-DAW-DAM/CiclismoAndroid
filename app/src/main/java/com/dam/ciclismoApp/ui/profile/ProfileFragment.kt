@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<LoginViewModel> { GenericViewModelFactory { ProfileViewModel() } }
+    private val viewModel by viewModels<ProfileViewModel> { GenericViewModelFactory { ProfileViewModel() } }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,9 +36,9 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
 
 //        val textView: TextView = binding.textView3
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+//        notificationsViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
-        }
+//        }
         return root
     }
 
@@ -52,7 +52,13 @@ class ProfileFragment : Fragment() {
         binding.btnUpdate.setOnClickListener {
             val dialogBinding = DialogUpdateUserBinding.inflate(layoutInflater)
             DialogManager.showCustomDialog(requireContext(), dialogBinding, false) { dialog ->
-
+                dialogBinding.etUserUpd.setText(viewModel.name.value)
+                dialogBinding.btnCloseUpd.setOnClickListener {
+                    dialog.dismiss()
+                }
+                dialogBinding.btnUpdateUser.setOnClickListener {
+                    dialog.dismiss()
+                }
             }
         }
         binding.btnCloseSesion.setOnClickListener {

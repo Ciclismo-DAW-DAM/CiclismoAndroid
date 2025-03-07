@@ -15,7 +15,7 @@ data class Race(
     val date: String,
     @Json(name = "distance_km") val distance:Double,
     val location:String,
-    val coordinates:Coordinates,
+    val coordinates:String,
     val unevenness:Int,
     @Json(name = "entry_fee") val fee:Double,
     @Json(name = "available_slots") val slots:Int,
