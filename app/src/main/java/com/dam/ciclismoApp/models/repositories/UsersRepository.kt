@@ -20,5 +20,5 @@ class UsersRepository {
             .create()
     }
 
-    suspend fun logIn(logIn: LogIn): User = usersApi.logIn(logIn)
+    suspend fun logIn(logIn: LogIn): LogInResponse = usersApi.logIn(logIn)
 }

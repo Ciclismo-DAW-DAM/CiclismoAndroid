@@ -5,6 +5,6 @@ import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class LogInResponse(
-    val token:String,
+    val message:String,
     val user: User
 ):Serializable

@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etUserUpd" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etConfNewPassUpd"
+        android:id="@+id/etOldPassUpd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -74,6 +74,36 @@
         app:layout_constraintEnd_toEndOf="@+id/etUserUpd"
         app:layout_constraintStart_toStartOf="@+id/etUserUpd"
         app:layout_constraintTop_toBottomOf="@+id/etImgUpd">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOldPasswordUpd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="@color/blue_spring_dark_soft_plus"
+            android:fontFamily="@font/open_sans"
+
+            android:hint="Vieja contraseña"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColor="@color/blue_spring_dark"
+            android:textColorHint="@color/blue_spring_dark_soft"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etNewPassUpd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:hint="Vieja contaseña"
+        android:textColorHint="@color/grey"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/blue_spring_dark"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/etUserUpd"
+        app:layout_constraintStart_toStartOf="@+id/etUserUpd"
+        app:layout_constraintTop_toBottomOf="@id/etOldPassUpd">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPasswordUpd"
@@ -100,9 +130,9 @@
         app:endIconMode="password_toggle"
         app:endIconTint="@color/blue_spring_dark"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/etConfNewPassUpd"
-        app:layout_constraintStart_toStartOf="@+id/etConfNewPassUpd"
-        app:layout_constraintTop_toBottomOf="@+id/etConfNewPassUpd">
+        app:layout_constraintEnd_toEndOf="@+id/etNewPassUpd"
+        app:layout_constraintStart_toStartOf="@+id/etNewPassUpd"
+        app:layout_constraintTop_toBottomOf="@+id/etNewPassUpd">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPasswordUpdConfirm"

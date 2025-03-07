@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ParticipantsApi {
     @GET("cycling_participant")
-    suspend fun getParticipants():List<Participant>
+    suspend fun getParticipantsFromRace():List<Participant>
 }

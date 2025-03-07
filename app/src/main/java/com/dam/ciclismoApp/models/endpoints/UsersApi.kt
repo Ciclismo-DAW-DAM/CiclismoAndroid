@@ -4,11 +4,23 @@ import com.dam.ciclismoApp.models.objects.LogIn
 import com.dam.ciclismoApp.models.objects.LogInResponse
 import com.dam.ciclismoApp.models.objects.User
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface UsersApi {
     @POST("auth/login")
     suspend fun logIn(
         @Body logIn: LogIn
+    ): LogInResponse
+
+    @GET("user/{id}")
+    suspend fun getUser(
+        @Path("id") id:Int
     ): User
+
+    @POST("user/{id}")
+    suspend fun updUser(
+        @Body user:User
+    ): Boolean
 }
