@@ -28,8 +28,7 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val notificationsViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         inicializarBinding(inflater,container)
         inicializarBotones()
@@ -46,7 +45,6 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
     fun inicializarBotones() {
         binding.btnUpdate.setOnClickListener {
@@ -88,14 +86,12 @@ class ProfileFragment : Fragment() {
          */
     }
 
-
     fun cerrar() {
         val intent = Intent(requireContext(), AuthActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             putExtra("NAVIGATE_TO_FRAGMENT", "LoginFragment")
         }
         startActivity(intent)
-        requireActivity().finish()
     }
 
     fun inicializarBinding(inflater: LayoutInflater,container: ViewGroup?) {
