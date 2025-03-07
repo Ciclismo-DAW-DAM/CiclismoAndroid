@@ -93,7 +93,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/lblName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -107,7 +107,7 @@
                     tools:text="Alejandro" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/lblMail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -121,6 +121,34 @@
                     tools:text="doe@mail.com" />
 
                 <TextView
+                    android:id="@+id/lblAge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/blue_spring_dark"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/textView26"
+                    tools:text="27 años" />
+
+                <TextView
+                    android:id="@+id/lblGender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/blue_spring_dark"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/textView27"
+                    tools:text="Masculino" />
+
+                <TextView
                     android:id="@+id/textView14"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -131,6 +159,30 @@
                     android:textColor="@color/blue_spring_dark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Edad:"
+                    android:textColor="@color/blue_spring_dark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Género:"
+                    android:textColor="@color/blue_spring_dark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline4"
@@ -254,7 +306,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/lblTotalParticipations"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -269,7 +321,7 @@
                     tools:text="Alejandro" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/lblPrefLocation"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -284,7 +336,7 @@
                     tools:text="Alejandro" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/lblPrefCat"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -299,7 +351,7 @@
                     tools:text="Alejandro" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/lblKmTravelled"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -314,7 +366,7 @@
                     tools:text="Alejandro" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/lblTotalWins"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -329,7 +381,7 @@
                     tools:text="Alejandro" />
 
                 <TextView
-                    android:id="@+id/textView24"
+                    android:id="@+id/lblTotalSpent"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"

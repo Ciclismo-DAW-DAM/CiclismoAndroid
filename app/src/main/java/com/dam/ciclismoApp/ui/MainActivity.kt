@@ -23,10 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        lifecycleScope.launch {
-            val carrera = CyclingRepository().getRaces().get(1)
-            Log.d("RESPUESTA",carrera.name)
-        }
+
 
         val navView: BottomNavigationView = binding.navView
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_view_main) as NavHostFragment
