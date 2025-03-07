@@ -16,6 +16,7 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Actualizar usuario"
         android:textColor="@color/blue_spring_dark"
         android:textSize="24sp"
@@ -30,9 +31,9 @@
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/custom_edittext_up"
-        android:backgroundTint="@color/blue_spring_dark_soft"
+        android:backgroundTint="@color/blue_spring_dark_soft_plus"
         android:fontFamily="@font/open_sans"
         android:hint="Usuario"
         android:padding="16dp"
@@ -61,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:backgroundTint="@color/blue_spring_dark_soft"
+            android:backgroundTint="@color/blue_spring_dark_soft_plus"
             android:fontFamily="@font/open_sans"
 
             android:hint="Nueva contraseña"
@@ -73,7 +74,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -91,9 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_down"
-            android:backgroundTint="@color/blue_spring_dark_soft"
+            android:backgroundTint="@color/blue_spring_dark_soft_plus"
             android:fontFamily="@font/open_sans"
-
             android:hint="Confirmar nueva contraseña"
             android:inputType="textPassword"
             android:padding="16dp"
@@ -107,10 +106,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:background="@color/green_spring"
+        android:backgroundTint="@color/green_spring"
         android:fontFamily="@font/open_sans_bold"
         android:text="Guardar cambios"
-        android:textColor="@color/white"
+        android:textColor="@color/blue_spring_dark"
         android:textSize="16sp"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"

@@ -8,9 +8,9 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/blue_spring_dark"
     android:background="@color/blue_spring_dark"
-    android:paddingStart="32dp"
-    android:paddingTop="32dp"
-    android:paddingEnd="32dp">
+    android:paddingStart="0dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="0dp">
 
     <TextView
         android:id="@+id/textView"
@@ -20,6 +20,8 @@
         android:textColor="@color/white"
         android:text="Participaciones"
         tools:text="Participaciones"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:textSize="24sp" />
     <TextView
         android:id="@+id/textView2"
@@ -27,6 +29,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans"
         android:textColor="@color/white"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="Has participado en 0 carreras"
         tools:text="Has participado en 0 carreras"
         android:textSize="14sp" />
@@ -41,7 +45,7 @@
         tools:listitem="@layout/item_rc_participation"
         tools:itemCount="15"
         tools:visibility="visible"
-        android:padding="8dp"
+        android:padding="16dp"
         android:layout_marginTop="8dp" />
 
 </LinearLayout>

@@ -35,9 +35,9 @@ class ProfileFragment : Fragment() {
         inicializarBotones()
         val root: View = binding.root
 
-        val textView: TextView = binding.textView3
+//        val textView: TextView = binding.textView3
         notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+//            textView.text = it
         }
         return root
     }
@@ -65,6 +65,7 @@ class ProfileFragment : Fragment() {
                 }
             )
         }
+        /*
         binding.btnDeleteUser.setOnClickListener{
             DialogManager.showConfirmationDialog(
                 requireContext(),
@@ -78,6 +79,7 @@ class ProfileFragment : Fragment() {
                 }
             )
         }
+         */
     }
 
 
