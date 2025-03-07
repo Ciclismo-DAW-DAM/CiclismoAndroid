@@ -7,133 +7,118 @@
     android:layout_marginBottom="12dp"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/blue_spring_dark">
+
         <ImageView
             android:id="@+id/imgParticipation"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="355dp"
+            android:layout_height="173dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/lblraceTitle"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="@+id/guideline7"
+            app:layout_constraintVertical_bias="0.0"
             tools:src="@tools:sample/avatars"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.45" />
-
         <TextView
             android:id="@+id/lblraceTitle"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@color/blue_spring_dark"
             android:fontFamily="@font/open_sans_bold"
-            android:padding="8dp"
             android:text="Titulo de carrera"
             android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/locationImg"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
             tools:text="Titulo de carrera" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:tint="@color/blue_spring_dark"
-            app:layout_constraintStart_toStartOf="@+id/lblraceTitle"
-            app:layout_constraintTop_toBottomOf="@+id/lblraceTitle"
-            app:srcCompat="@drawable/ic_location"
-            tools:ignore="UseAppTint" />
 
         <TextView
             android:id="@+id/lblLocation"
-            android:layout_width="0dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:fontFamily="@font/open_sans"
             android:text="Granada"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-            app:layout_constraintEnd_toEndOf="@+id/lblraceTitle"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
-            app:layout_constraintTop_toTopOf="@+id/imageView5"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/lblraceTitle"
+            app:layout_constraintTop_toBottomOf="@+id/lblraceTitle"
             tools:text="Granada" />
 
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:tint="@color/blue_spring_dark"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:srcCompat="@drawable/ic_num_part"
+            android:id="@+id/locationImg"
+            android:layout_width="49dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="12dp"
+            android:tint="@color/green_spring"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            app:srcCompat="@drawable/ic_location"
             tools:ignore="UseAppTint" />
 
-        <TextView
-            android:id="@+id/lblNumPart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/open_sans"
-            android:text="0 participantes"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-            app:layout_constraintEnd_toEndOf="@+id/lblraceTitle"
-            app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toTopOf="@+id/imageView7"
-            tools:text="0 participantes" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:tint="@color/blue_spring_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:srcCompat="@drawable/ic_score"
-            tools:ignore="UseAppTint" />
-
-        <TextView
-            android:id="@+id/lblScorePart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/open_sans"
-            android:text="136 min 23 seg"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintEnd_toEndOf="@+id/lblraceTitle"
-            app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toTopOf="@+id/imageView8"
-            tools:text="136 min 23 seg" />
-
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_begin="189dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="3dp" />
+
+        <TextView
+            android:id="@+id/lblDescription"
+            android:layout_width="391dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans"
+            android:hint="Descripción de la carrera"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  "
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/lblLocation" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="28dp" />
+
+
+        <View
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/green_spring"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/lblDescription"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_goneMarginTop="10dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.cardview.widget.CardView>
