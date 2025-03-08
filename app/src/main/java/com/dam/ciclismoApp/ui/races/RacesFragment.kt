@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,12 +33,16 @@ import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class RacesFragment : Fragment() {
     private val viewModel by viewModels<RacesViewModel> { GenericViewModelFactory { RacesViewModel() } }
     private var _binding: FragmentRacesBinding? = null
     private val binding get() = _binding!!
 
+    //region [Constructor & lifecycle]
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,6 +63,8 @@ class RacesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    //endregion
 
     private fun initView() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -79,11 +88,35 @@ class RacesFragment : Fragment() {
                     }
                 }
             })
+        binding.txtFilter.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Acción antes de que el texto cambie (opcional)
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.setFilter(s.toString())
+            }
+        })
+        binding.btnCleanFilter.setOnClickListener {
+            binding.txtFilter.text.clear()
+        }
         viewModel.numRaces.observe(viewLifecycleOwner) {
             binding.textView2.text = "Has encontrado ${viewModel.numRaces.value} carreras"
         }
         viewModel.filter.observe(viewLifecycleOwner) {
-            viewModel.setmListRacesFiltered(filterRaces())
+            lifecycleScope.launch {
+                withContext(Dispatchers.Main) {
+                    DialogManager.showLoadingDialog(requireContext()) // Asegurar que esté en el hilo principal
+                }
+                val filteredList = F.filterList(viewModel.mLisRaces.value, it)
+                withContext(Dispatchers.Main) {
+                    viewModel.setmListRacesFiltered(filteredList) // Actualiza LiveData en Main
+                    DialogManager.dismissLoadingDialog()
+                }
+            }
         }
         viewModel.mLisRacesFiltered.observe(viewLifecycleOwner) {
             viewModel.mLisRacesFiltered.value?.let { it1 -> setupRcPartipations(it1) }
@@ -93,7 +126,6 @@ class RacesFragment : Fragment() {
 
     private fun initData() {
         viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
-        filterRaces()
     }
 
     //region [RC & data]
@@ -150,27 +182,6 @@ class RacesFragment : Fragment() {
             setHasFixedSize(false)
             recycledViewPool.clear()
         }
-    }
-
-    private fun filterRaces(): List<Race> {
-        val searchTerm = viewModel.filter.value?.lowercase() ?: ""
-        return viewModel.mLisRaces.value?.filter { race ->
-            listOf(
-                race.id.toString(),
-                race.name,
-                race.description,
-                race.date,
-                race.distance.toString(),
-                race.location,
-                race.coordinates,
-                race.unevenness.toString(),
-                race.fee.toString(),
-                race.slots.toString(),
-                race.status,
-                race.category,
-                race.image
-            ).any { it.lowercase().contains(searchTerm) }
-        } ?: emptyList()
     }
     //endregion
 

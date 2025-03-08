@@ -11,8 +11,11 @@ import androidx.core.content.ContextCompat
 import com.dam.ciclismoApp.R
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.reflect.full.memberProperties
 
 class F {
     companion object {
@@ -39,7 +42,6 @@ class F {
 
             return offsetDateTime.format(formatter)
         }
-
         inline fun showToast(
             context: Context,
             message: String,
@@ -71,6 +73,25 @@ class F {
             toast.view = layout
             toast.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 100)
             toast.show()
+        }
+
+        suspend inline fun <reified T : Any> filterList(
+            list: List<T>?,
+            filterText: String,
+            noinline attributes: ((T) -> List<String>)? = null
+        ): List<T> = withContext(Dispatchers.IO) {
+            val searchTerms = filterText.lowercase().split(" ").filter { it.isNotBlank() }
+
+            list?.filter { item ->
+                val searchableAttributes = attributes?.invoke(item)
+                    ?: item::class.memberProperties.mapNotNull { prop ->
+                        prop.getter.call(item)?.toString()
+                    }
+
+                searchTerms.all { term ->
+                    searchableAttributes.any { it.lowercase().contains(term) }
+                }
+            } ?: emptyList()
         }
     }
 }
