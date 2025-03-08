@@ -5,6 +5,9 @@ import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.Serializable
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 @JsonClass(generateAdapter = true)
 data class User(
@@ -15,7 +18,7 @@ data class User(
     val password:String?,
     val banned:Boolean,
     @Json(name = "cyclingParticipants") val cyclingParticipants:List<Participant>,
-    val age:Int,
+    val age:String,
     val gender:String,
     val image:String
 ):Serializable {
@@ -27,7 +30,7 @@ data class User(
         password = "",
         banned = false,
         cyclingParticipants = emptyList(),
-        age = 0,
+        age = "",
         gender = "",
         image = ""
     )
@@ -43,5 +46,14 @@ data class User(
         val adapter = moshi.adapter(User::class.java)
         val usuario: User? = adapter.fromJson(json)
         return checkNotNull(usuario)
+    }
+
+    fun getFechaComoOffsetDateTime(): OffsetDateTime =
+        OffsetDateTime.parse(age, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+
+    fun getAgeInYears(): Int {
+        val nacimiento = getFechaComoOffsetDateTime()
+        val ahora = OffsetDateTime.now()
+        return ChronoUnit.YEARS.between(nacimiento,ahora).toInt()
     }
 }

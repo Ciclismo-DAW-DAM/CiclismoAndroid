@@ -192,7 +192,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                   "banned": false
                 }
               ],
-              "age": 29,
+              "age": "1998-06-17T20:00:00Z",
               "gender": "Male",
               "image": "https://example.com/images/juan_perez.jpg"
             }

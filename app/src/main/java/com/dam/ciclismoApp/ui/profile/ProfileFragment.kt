@@ -123,7 +123,7 @@ class ProfileFragment : Fragment() {
         val user: User = User().fromJson(P.get(P.S.JSON_USER))
         viewModel.setName(user.name)
         viewModel.setMail(user.email)
-        viewModel.setAge(user.age)
+        viewModel.setAge(user.getAgeInYears())
         viewModel.setGender(user.gender)
         val participaciones = user.cyclingParticipants
         viewModel.setTotalParticipations(participaciones.size)
