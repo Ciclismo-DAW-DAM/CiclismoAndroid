@@ -10,7 +10,7 @@ data class User(
     val email:String,
     val roles:List<String>,
     val name:String,
-    val password:String,
+    val password:String?,
     val banned:Boolean,
     @Json(name = "cyclingParticipants") val cyclingParticipants:List<Participant>,
     val age:Int,

@@ -5,13 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dam.ciclismoApp.R
 import com.dam.ciclismoApp.databinding.FragmentLoginBinding
-import com.dam.ciclismoApp.databinding.FragmentParticipationsBinding
 import com.dam.ciclismoApp.ui.MainActivity
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
 
@@ -28,11 +25,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-
-
-
         return root
     }
 

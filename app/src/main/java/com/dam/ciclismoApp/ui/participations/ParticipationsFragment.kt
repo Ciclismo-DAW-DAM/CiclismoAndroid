@@ -22,11 +22,6 @@ import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ParticipationsFragment : Fragment() {
     private val viewModel by viewModels<ParticipationsViewModel> { GenericViewModelFactory { ParticipationsViewModel() } }
@@ -41,13 +36,7 @@ class ParticipationsFragment : Fragment() {
     ): View {
         _binding = FragmentParticipationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val lblSubtitle: TextView = binding.textView2
-        viewModel.numParticipations.observe(viewLifecycleOwner) {
-            lblSubtitle.text = "Has particpado en ${viewModel.numParticipations.value} carreras"
-        }
-        viewModel.mLisParticipations.observe(viewLifecycleOwner){
-            viewModel.mLisParticipations.value?.let { it1 -> setupRcPartipations(it1) }
-        }
+        initView()
         return root
     }
 
@@ -55,13 +44,12 @@ class ParticipationsFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
-        MainScope().launch {
-            withContext(Dispatchers.Main) {
-                delay(2000)
-                viewModel.setNumParticipations(10)
-            }
-        }
+       initData()
+        /*       MainScope().launch {
+                    withContext(Dispatchers.Main) {
+                    }
+                }
+        */
     }
 
     override fun onDestroyView() {
@@ -72,12 +60,12 @@ class ParticipationsFragment : Fragment() {
 
     //region [RC & data]
     private fun setupRcPartipations(mList: List<Participant>) {
-        val mAdapter = object : RecyclerAdapter<ViewwHolder>(
+        val mAdapter = object : RecyclerAdapter<ViewHolder>(
             mList,
             R.layout.item_rc_participation,
-            ViewwHolder::class.java
+            ViewHolder::class.java
         ) {
-            override fun onBindViewHolder(holder: ViewwHolder, position: Int) {
+            override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                 var item = mList[position]
                 holder.itemBinding.lblraceTitle.text =  item.race.name
                 holder.itemBinding.lblLocation.text =  item.race.location
@@ -111,8 +99,24 @@ class ParticipationsFragment : Fragment() {
     }
     //endregion
 
+
+    private fun initView() {
+        val lblSubtitle: TextView = binding.textView2
+        viewModel.numParticipations.observe(viewLifecycleOwner) {
+            lblSubtitle.text = "Has particpado en ${viewModel.numParticipations.value} carreras"
+        }
+        viewModel.mLisParticipations.observe(viewLifecycleOwner) {
+            viewModel.mLisParticipations.value?.let { it1 -> setupRcPartipations(it1) }
+        }
+    }
+
+    private fun initData() {
+        viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
+        viewModel.mLisParticipations.value?.size?.let { viewModel.setNumParticipations(it) }
+    }
+
 }
 
-class ViewwHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var itemBinding = ItemRcParticipationBinding.bind(view)
 }

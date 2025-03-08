@@ -18,3 +18,4 @@ data class Participant(
     fun getFechaComoOffsetDateTime(): OffsetDateTime =
         OffsetDateTime.parse(time, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 }
+
