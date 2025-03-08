@@ -123,16 +123,9 @@ class RacesFragment : Fragment() {
                         else -> println("Opción no válida")
                     }
                 }
-                /*  holder.itemBinding.lblraceTitle.text =  item.race.name
-                holder.itemBinding.lblLocation.text =  item.race.location
-                holder.itemBinding.lblNumPart.text =  item.race.participants.size.toString() + " participantes"
-                holder.itemBinding.lblScorePart.text =  item.time
-                holder.itemBinding.imgParticipation.apply {
-                    load(item.race.image){
-                        placeholder(R.drawable.loading)
-                        error(R.drawable.ic_broken_img)
-                    }
-                }*/
+                holder.itemBinding.imgInscrito.apply {
+
+                }
                 holder.itemBinding.clParent.setOnClickListener {
                     val dialogBinding = DialogRaceDetailBinding.inflate(layoutInflater)
                     DialogManager.showCustomDialog(requireContext(), dialogBinding, false) { dialog ->
