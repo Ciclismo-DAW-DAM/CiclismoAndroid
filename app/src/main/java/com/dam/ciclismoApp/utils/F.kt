@@ -85,7 +85,6 @@ class F {
             filterText: String,
             noinline attributes: ((T) -> List<String>)? = null
         ): List<T> = withContext(Dispatchers.IO) {
-            delay(200) // Simulación de una operación de filtrado más lenta
             val searchTerms = filterText.lowercase().split(" ").filter { it.isNotBlank() }
 
             list?.filter { item ->

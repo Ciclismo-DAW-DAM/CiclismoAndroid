@@ -101,6 +101,15 @@ class ParticipationsFragment : Fragment() {
             viewModel.mLisParticipationsFiltered.value?.let { it1 -> setupRcPartipations(it1) }
             viewModel.setNumParticipations(it.size)
         }
+        binding.swipeRefreshLayoutPart.apply {
+            this.setProgressViewOffset(true, 200, 400)
+            this.setOnRefreshListener {
+                lifecycleScope.launch {
+                    binding.swipeRefreshLayoutPart.isRefreshing = false
+//                    viewModel.setFilter("Tour")
+                }
+            }
+        }
     }
 
     private fun initData() {

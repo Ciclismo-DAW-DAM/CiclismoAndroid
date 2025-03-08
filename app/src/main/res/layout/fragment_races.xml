@@ -38,26 +38,33 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:text="0 carreras encontradas" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcParticipations"
-        android:layout_width="0dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayoutRaces"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:background="@color/white_soft"
-        android:paddingStart="16dp"
-        android:paddingTop="67dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="8dp"
-        android:verticalScrollbarPosition="right"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:itemCount="15"
-        tools:listitem="@layout/item_rc_participation"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcParticipations"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white_soft"
+            android:paddingStart="16dp"
+            android:paddingTop="67dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:verticalScrollbarPosition="right"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="15"
+            tools:listitem="@layout/item_rc_participation"
+            tools:visibility="visible" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <EditText
         android:id="@+id/txtFilter"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"

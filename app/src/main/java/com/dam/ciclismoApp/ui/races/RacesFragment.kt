@@ -34,6 +34,7 @@ import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -121,6 +122,15 @@ class RacesFragment : Fragment() {
         viewModel.mLisRacesFiltered.observe(viewLifecycleOwner) {
             viewModel.mLisRacesFiltered.value?.let { it1 -> setupRcPartipations(it1) }
             viewModel.setNumRace(it.size)
+        }
+        binding.swipeRefreshLayoutRaces.apply {
+            this.setProgressViewOffset(true, 200, 400)
+            this.setOnRefreshListener {
+                lifecycleScope.launch {
+                    binding.swipeRefreshLayoutRaces.isRefreshing = false
+//                    viewModel.setFilter("Tour")
+                }
+            }
         }
     }
 
