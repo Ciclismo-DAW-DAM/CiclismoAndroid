@@ -29,8 +29,8 @@ class ProfileViewModel : ViewModel() {
     private var _kmTravelled = MutableLiveData<Int>().apply {
         value = 0
     }
-    private var _totalWins = MutableLiveData<Int>().apply {
-        value = 0
+    private var _imgProfile = MutableLiveData<String>().apply {
+        value = ""
     }
     private var _totalSpent = MutableLiveData<Int>().apply {
         value = 0
@@ -46,7 +46,7 @@ class ProfileViewModel : ViewModel() {
     var prefLocation: LiveData<String> = _prefLocation
     var prefCategory: LiveData<String> = _prefCategory
     var kmTravelled: LiveData<Int> = _kmTravelled
-    var totalWins: LiveData<Int> = _totalWins
+    var imgProfile: LiveData<String> = _imgProfile
     var totalSpent: LiveData<Int> = _totalSpent
 //endregion
 
@@ -75,8 +75,8 @@ class ProfileViewModel : ViewModel() {
     fun setKmTravelled(value: Int) {
         _kmTravelled.value = value
     }
-    fun setTotalWins(value: Int) {
-        _totalWins.value = value
+    fun setImgProfile(value: String) {
+        _imgProfile.value = value
     }
     fun setTotalSpent(value: Int) {
         _totalSpent.value = value

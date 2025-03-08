@@ -99,11 +99,9 @@ class ParticipationsFragment : Fragment() {
     }
     //endregion
 
-
     private fun initView() {
-        val lblSubtitle: TextView = binding.textView2
         viewModel.numParticipations.observe(viewLifecycleOwner) {
-            lblSubtitle.text = "Has particpado en ${viewModel.numParticipations.value} carreras"
+            binding.textView2.text = "Has particpado en ${viewModel.numParticipations.value} carreras"
         }
         viewModel.mLisParticipations.observe(viewLifecycleOwner) {
             viewModel.mLisParticipations.value?.let { it1 -> setupRcPartipations(it1) }
@@ -114,7 +112,6 @@ class ParticipationsFragment : Fragment() {
         viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
         viewModel.mLisParticipations.value?.size?.let { viewModel.setNumParticipations(it) }
     }
-
 }
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

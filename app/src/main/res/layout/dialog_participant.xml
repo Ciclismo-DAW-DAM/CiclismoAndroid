@@ -69,6 +69,7 @@
                 android:textColor="@color/blue_spring_dark"
                 app:layout_constraintBottom_toBottomOf="@+id/imgRaceDialogParticipant"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView9" />
 
             <ImageView

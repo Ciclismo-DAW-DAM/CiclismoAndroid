@@ -9,7 +9,7 @@ import java.util.Date
 @JsonClass(generateAdapter = true)
 data class Participant(
     val id:Int,
-    val user:User,
+    val user:User?,
     val race:Race,
     val time: String,
     val dorsal:Int,

@@ -55,6 +55,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     //endregion
 
     fun iniciarSesion() {
+        P.init(requireContext())
         val logIn:LogIn = LogIn(binding.etUsername.text.toString(),binding.etPasswordUpd.text.toString())
         /*lifecycleScope.launch {
             val respuesta:LogInResponse = UsersRepository().logIn(logIn)
@@ -66,7 +67,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 requireActivity().finish() // Cierra AuthActivity
             }
         }*/
-        P.set(P.S.JSON_USER,"""
+        P[P.S.JSON_USER] = """
             {
               "id": 101,
               "email": "juan.perez@example.com",
@@ -83,11 +84,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     "name": "Tour de Francia",
                     "description": "El evento ciclista más prestigioso del mundo.",
                     "date": "2025-07-01T10:00:00+02:00",
-                    "distance_km": 280.0,
+                    "distance_km": 280,
                     "location": "París, Francia",
                     "coordinates": "lat=48.8566, lng=2.3522",
                     "unevenness": 18,
-                    "entry_fee": 150.0,
+                    "entry_fee": 150,
                     "available_slots": 12,
                     "status": "open",
                     "category": "Etapas",
@@ -106,11 +107,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     "name": "Giro de Italia",
                     "description": "Una de las carreras más icónicas del mundo.",
                     "date": "2025-05-20T09:00:00+02:00",
-                    "distance_km": 220.3,
+                    "distance_km": 220,
                     "location": "Roma, Italia",
                     "coordinates": "lat=41.9028, lng=12.4964",
                     "unevenness": 15,
-                    "entry_fee": 120.0,
+                    "entry_fee": 120,
                     "available_slots": 8,
                     "status": "open",
                     "category": "Aventura",
@@ -129,11 +130,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     "name": "Tour de España",
                     "description": "Una carrera emocionante a través de la península ibérica.",
                     "date": "2025-06-15T08:00:00+02:00",
-                    "distance_km": 250.5,
+                    "distance_km": 250,
                     "location": "Madrid, España",
                     "coordinates": "lat=40.4168, lng=-3.7038",
                     "unevenness": 12,
-                    "entry_fee": 100.0,
+                    "entry_fee": 100,
                     "available_slots": 5,
                     "status": "open",
                     "category": "Montaña",
@@ -152,11 +153,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     "name": "Vuelta a Colombia",
                     "description": "Recorriendo las montañas colombianas.",
                     "date": "2025-08-10T07:00:00-05:00",
-                    "distance_km": 180.7,
+                    "distance_km": 180,
                     "location": "Bogotá, Colombia",
                     "coordinates": "lat=4.7110, lng=-74.0721",
                     "unevenness": 20,
-                    "entry_fee": 80.0,
+                    "entry_fee": 80,
                     "available_slots": 10,
                     "status": "open",
                     "category": "Montaña",
@@ -175,11 +176,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     "name": "Tour de Argentina",
                     "description": "Carrera por los paisajes argentinos.",
                     "date": "2025-09-25T09:30:00-03:00",
-                    "distance_km": 200.2,
+                    "distance_km": 200,
                     "location": "Buenos Aires, Argentina",
                     "coordinates": "lat=-34.6037, lng=-58.3816",
                     "unevenness": 12,
-                    "entry_fee": 90.0,
+                    "entry_fee": 90,
                     "available_slots": 7,
                     "status": "open",
                     "category": "Aventura",
@@ -195,7 +196,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
               "gender": "Male",
               "image": "https://example.com/images/juan_perez.jpg"
             }
-        """.trimIndent())
+        """.trimIndent()
+        var a = P.get(P.S.JSON_USER)
         val intent = Intent(requireActivity(), MainActivity::class.java)
          startActivity(intent)
         requireActivity().finish() // Cierra AuthActivity
