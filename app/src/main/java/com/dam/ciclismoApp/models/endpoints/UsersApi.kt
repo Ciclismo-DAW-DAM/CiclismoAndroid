@@ -29,5 +29,5 @@ interface UsersApi {
     @DELETE("user/{id}")
     suspend fun delUser(
         @Path("id") user:User
-    )
+    ): Boolean
 }

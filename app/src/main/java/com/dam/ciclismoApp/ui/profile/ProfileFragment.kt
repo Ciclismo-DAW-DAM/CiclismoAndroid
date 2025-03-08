@@ -140,10 +140,20 @@ class ProfileFragment : Fragment() {
                 "¡ATENCIÓN!",
                 "¿Estás seguro de eliminar la cuenta? (Esta acción no se puede deshacer)",
                 onConfirm = {
-                    /*lifecycleScope.launch {
-                        UsersRepository().delUser(checkNotNull(viewModel.user.value))
-                    }*/
-                    cerrar()
+                    lifecycleScope.launch {
+                        var response: Boolean
+                        try {
+                            response = UsersRepository().delUser(checkNotNull(viewModel.user.value))
+                        } catch (e:Exception) {
+                            response = false
+                        }
+
+                        if (response) {
+                            cerrar()
+                        } else {
+                            F.showToast(requireContext(),"No se ha podido eliminar la cuenta.")
+                        }
+                    }
                 }
             )
         }
