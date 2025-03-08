@@ -43,7 +43,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/white_soft"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/btnCloseSesion"
+        app:layout_constraintBottom_toTopOf="@+id/btnDeleteUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -368,6 +368,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDeleteUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/grey"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Eliminar cuenta"
+        android:textColor="@color/blue_spring_dark"
+        android:textSize="16sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCloseSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCloseSesion"
