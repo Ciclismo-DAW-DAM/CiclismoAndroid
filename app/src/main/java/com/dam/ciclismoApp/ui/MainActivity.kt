@@ -361,7 +361,7 @@ class MainActivity : AppCompatActivity() {
                 "unevenness": 21,
                 "entry_fee": 130.0,
                 "available_slots": 5,
-                "status": "open",
+                "status": "complete",
                 "category": "Gran Fondo",
                 "image": "https://example.com/images/la-marmotte.jpg",
                 "cyclingParticipants": []

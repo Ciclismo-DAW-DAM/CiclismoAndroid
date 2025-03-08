@@ -1,12 +1,15 @@
 package com.dam.ciclismoApp.ui.races
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,6 +25,7 @@ import com.dam.ciclismoApp.databinding.ItemRcRaceBinding
 import com.dam.ciclismoApp.models.objects.Race
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.utils.DialogManager
+import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
@@ -110,6 +114,15 @@ class RacesFragment : Fragment() {
                 holder.itemBinding.lblLocation.text = item.location
                 holder.itemBinding.lblDescription.text = item.description
                 holder.itemBinding.lblraceTitle.text = item.name
+                holder.itemBinding.lblDate.text ="${F.formatFecha(item.date, true)}h"
+                holder.itemBinding.clIndicator.apply {
+                    when (item.status) {
+                        "open"      -> this.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.green_spring))
+                        "closed"    -> this.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.red_spring))
+                        "complete"  -> this.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.orange_spring))
+                        else -> println("Opción no válida")
+                    }
+                }
                 /*  holder.itemBinding.lblraceTitle.text =  item.race.name
                 holder.itemBinding.lblLocation.text =  item.race.location
                 holder.itemBinding.lblNumPart.text =  item.race.participants.size.toString() + " participantes"
