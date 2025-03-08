@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="12dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="15dp"
     android:layout_height="wrap_content"
@@ -12,12 +11,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgRace"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +34,7 @@
             android:text="Titulo de carrera"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/imgInscrito"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgRace"
@@ -45,11 +44,13 @@
             android:id="@+id/lblLocation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/open_sans"
             android:text="Granada"
             android:textColor="@color/blue_spring_dark"
             app:layout_constraintBottom_toBottomOf="@+id/locationImg"
-            app:layout_constraintEnd_toStartOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/locationImg"
             app:layout_constraintTop_toTopOf="@+id/locationImg"
             tools:text="Granada" />
@@ -59,22 +60,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans"
             android:text="Granada"
             android:textColor="@color/blue_spring_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/locationImg"
-            app:layout_constraintEnd_toEndOf="@+id/lblDescription"
+            app:layout_constraintEnd_toEndOf="@+id/lblLocation"
             app:layout_constraintStart_toEndOf="@+id/Dateimg"
-            app:layout_constraintTop_toTopOf="@+id/locationImg"
+            app:layout_constraintTop_toBottomOf="@+id/locationImg"
             tools:text="Granada" />
 
         <ImageView
             android:id="@+id/locationImg"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:tint="@color/green_spring"
-            app:layout_constraintStart_toStartOf="@+id/lblDescription"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblraceTitle"
             app:srcCompat="@drawable/ic_location"
             tools:ignore="UseAppTint" />
@@ -83,11 +85,10 @@
             android:id="@+id/Dateimg"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:tint="@color/green_spring"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/lblraceTitle"
+            app:layout_constraintStart_toStartOf="@+id/locationImg"
+            app:layout_constraintTop_toBottomOf="@+id/lblLocation"
             app:srcCompat="@drawable/ic_calendar"
             tools:ignore="UseAppTint" />
 
@@ -100,20 +101,21 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/open_sans"
             android:hint="Descripción de la carrera"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  "
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
             android:textColor="@color/blue_spring_dark"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/locationImg" />
+            app:layout_constraintTop_toBottomOf="@+id/lblDate" />
 
 
         <View
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/green_spring"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -139,15 +141,13 @@
         <ImageView
             android:id="@+id/imgInscrito"
             android:layout_width="40dp"
-            android:layout_height="0dp"
-            android:background="@color/blue_spring_dark"
+            android:layout_height="40dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:tint="@color/green_spring"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/lblraceTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRace"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_inscrito"
             tools:visibility="visible" />
 

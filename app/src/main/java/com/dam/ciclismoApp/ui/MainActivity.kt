@@ -1,5 +1,8 @@
 package com.dam.ciclismoApp.ui
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_view_main) as NavHostFragment
         navController = navHostFragment.navController
         navView.setupWithNavController(navController)
+
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         mockUpApp()
     }
 
