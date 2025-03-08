@@ -58,6 +58,7 @@
             android:id="@+id/lblDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/open_sans"
             android:text="Granada"
             android:textColor="@color/blue_spring_dark"
