@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                   "password": "securepass123",
                   "banned": false,
                   "cyclingParticipants": [],
-                  "age": 29,
+                  "age": "1998-06-17T20:00:00Z",
                   "gender": "Male",
                   "image": "https://example.com/images/juan_perez.jpg"
                 },
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                   "password": null,
                   "banned": false,
                   "cyclingParticipants": [],
-                  "age": 25,
+                  "age": "1998-06-17T20:00:00Z",
                   "gender": "Female",
                   "image": "https://example.com/images/ana_gomez.jpg"
                 },
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                   "password": "bikeRider456",
                   "banned": false,
                   "cyclingParticipants": [],
-                  "age": 32,
+                  "age": "1998-06-17T20:00:00Z",
                   "gender": "Male",
                   "image": "https://example.com/images/carlos_mendez.jpg"
                 },
@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                   "password": "riderSofi",
                   "banned": false,
                   "cyclingParticipants": [],
-                  "age": 27,
+                  "age": "1996-06-17T20:00:00Z",
                   "gender": "Female",
                   "image": "https://example.com/images/sofia_lopez.jpg"
                 },
@@ -178,7 +178,7 @@ class MainActivity : AppCompatActivity() {
                   "password": "fastBike789",
                   "banned": false,
                   "cyclingParticipants": [],
-                  "age": 30,
+                  "age": "1992-06-17T20:00:00Z",
                   "gender": "Male",
                   "image": "https://example.com/images/lucas_fernandez.jpg"
                 },
@@ -493,7 +493,7 @@ class MainActivity : AppCompatActivity() {
                   "banned": false
                 }
               ],
-              "age": 29,
+              "age": "1998-06-17T20:00:00Z",
               "gender": "Male",
               "image": "https://example.com/images/juan_perez.jpg"
             }
