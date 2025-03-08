@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
@@ -25,6 +26,7 @@ import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
+import com.dam.ciclismoApp.utils.GridSpacingItemDecoration
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
@@ -161,7 +163,13 @@ class ParticipationsFragment : Fragment() {
             }
         }
         binding.rcParticipations.apply {
-            layoutManager = LinearLayoutManager(context)
+            val spanCount = 1
+            val spacing = resources.getDimensionPixelSize(R.dimen.grid_spacing)
+            while (itemDecorationCount > 0) {
+                removeItemDecorationAt(0)
+            }
+            layoutManager = GridLayoutManager(requireContext(), spanCount)
+            addItemDecoration(GridSpacingItemDecoration(spanCount, spacing, true))
             adapter = mAdapter
             setItemViewCacheSize(100)
             setHasFixedSize(false)

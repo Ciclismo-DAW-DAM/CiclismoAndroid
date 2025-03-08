@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -24,9 +26,15 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_view_main) as NavHostFragment
         navController = navHostFragment.navController
         navView.setupWithNavController(navController)
-
-
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        binding.rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            detectKeyboard { isVisible ->
+                if (isVisible) {
+                    binding.navView.visibility = View.GONE
+                } else {
+                    binding.navView.visibility = View.VISIBLE
+                }
+            }
+        }
         mockUpApp()
     }
 
@@ -504,5 +512,17 @@ class MainActivity : AppCompatActivity() {
               "image": "https://example.com/images/juan_perez.jpg"
             }
         """.trimIndent()
+    }
+
+    private fun detectKeyboard(onKeyboardVisibilityChanged: (Boolean) -> Unit) {
+        val rootView = window.decorView.rootView
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = android.graphics.Rect()
+            rootView.getWindowVisibleDisplayFrame(r)
+            val screenHeight = rootView.height
+            val keyboardHeight = screenHeight - r.bottom
+            val isKeyboardVisible = keyboardHeight > screenHeight * 0.15
+            onKeyboardVisibilityChanged(isKeyboardVisible)
+        }
     }
 }

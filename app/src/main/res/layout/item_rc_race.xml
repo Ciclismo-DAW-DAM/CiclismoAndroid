@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/clParent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="15dp"
+    android:id="@+id/clParent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="15dp">
+  <!--  <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/green_spring" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/imgRace"
@@ -49,7 +56,6 @@
             android:fontFamily="@font/open_sans"
             android:text="Granada"
             android:textColor="@color/blue_spring_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/locationImg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/locationImg"
             app:layout_constraintTop_toTopOf="@+id/locationImg"
@@ -60,13 +66,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans"
             android:text="Granada"
             android:textColor="@color/blue_spring_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/lblLocation"
             app:layout_constraintStart_toEndOf="@+id/Dateimg"
-            app:layout_constraintTop_toBottomOf="@+id/locationImg"
+            app:layout_constraintTop_toTopOf="@+id/Dateimg"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="Granada" />
 
         <ImageView
@@ -107,22 +114,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblDate" />
-
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/green_spring"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblDescription"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_goneMarginTop="10dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -169,6 +160,8 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.cardview.widget.CardView>
