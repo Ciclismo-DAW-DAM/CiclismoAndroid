@@ -23,10 +23,12 @@ import com.dam.ciclismoApp.databinding.DialogRaceDetailBinding
 import com.dam.ciclismoApp.databinding.FragmentRacesBinding
 import com.dam.ciclismoApp.databinding.ItemRcRaceBinding
 import com.dam.ciclismoApp.models.objects.Race
+import com.dam.ciclismoApp.models.objects.User
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
+import com.dam.ciclismoApp.utils.F.Companion.parseJsonToObject
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
@@ -124,7 +126,12 @@ class RacesFragment : Fragment() {
                     }
                 }
                 holder.itemBinding.imgInscrito.apply {
-
+                    var u: User = parseJsonToObject<User>(P.get(P.S.JSON_USER))!!
+                    u.cyclingParticipants.forEach{par ->
+                        if (par.race.id == item.id){
+                            this.visibility = View.VISIBLE
+                        }
+                    }
                 }
                 holder.itemBinding.clParent.setOnClickListener {
                     val dialogBinding = DialogRaceDetailBinding.inflate(layoutInflater)
