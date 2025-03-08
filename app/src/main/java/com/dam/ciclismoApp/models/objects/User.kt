@@ -19,25 +19,29 @@ data class User(
     val gender:String,
     val image:String
 ):Serializable {
-    val moshi = MoshiConverterFactory.create()
+    constructor() : this(
+        id = 0,
+        email = "",
+        roles = emptyList(),
+        name = "",
+        password = "",
+        banned = false,
+        cyclingParticipants = emptyList(),
+        age = 0,
+        gender = "",
+        image = ""
+    )
     fun toJson(): String {
-        val moshi = Moshi.Builder()
-            .add(moshi)
-            .build()
+        val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(User::class.java)
         val json = adapter.toJson(this)
         return json
     }
 
     fun fromJson(json:String): User {
-        val moshi = Moshi.Builder()
-            .add(moshi)
-            .build()
-
+        val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(User::class.java)
-
         val usuario: User? = adapter.fromJson(json)
-
         return checkNotNull(usuario)
     }
 }

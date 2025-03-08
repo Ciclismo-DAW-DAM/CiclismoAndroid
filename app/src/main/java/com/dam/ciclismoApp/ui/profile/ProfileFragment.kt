@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.dam.ciclismoApp.databinding.DialogUpdateUserBinding
 import com.dam.ciclismoApp.databinding.FragmentProfileBinding
+import com.dam.ciclismoApp.models.objects.Participant
 import com.dam.ciclismoApp.models.objects.User
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.ui.login.LoginViewModel
@@ -91,9 +92,18 @@ class ProfileFragment : Fragment() {
     }
 
     fun cargarDatos() {
-        val user: User? = null
-        //user.fromJson(P.get(P.S.JSON_USER))
-        //viewModel.setName(user.name)
+        val user: User = User().fromJson(P.get(P.S.JSON_USER))
+        viewModel.setName(user.name)
+        viewModel.setMail(user.email)
+        viewModel.setAge(user.age)
+        viewModel.setGender(user.gender)
+        val participaciones = user.cyclingParticipants
+        viewModel.setTotalParticipations(participaciones.size)
+
+        viewModel.setPrefLocation(checkNotNull(participaciones.groupingBy { it.race.location }.eachCount().maxByOrNull { it.value }).key)
+        viewModel.setPrefCategory(checkNotNull(participaciones.groupingBy { it.race.category }.eachCount().maxByOrNull { it.value }).key)
+        viewModel.setKmTravelled(participaciones.sumOf { it.race.distance })
+        viewModel.setTotalSpent(participaciones.sumOf { it.race.fee })
     }
 
     fun cerrar() {
