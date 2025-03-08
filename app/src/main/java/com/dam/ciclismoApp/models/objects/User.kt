@@ -38,6 +38,7 @@ data class User(
         oldpassword = "",
         newpassword = ""
     )
+
     fun toJson(): String {
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(User::class.java)

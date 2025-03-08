@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +28,12 @@ import com.dam.ciclismoApp.R
 import com.dam.ciclismoApp.databinding.DialogRaceDetailBinding
 import com.dam.ciclismoApp.databinding.FragmentRacesBinding
 import com.dam.ciclismoApp.databinding.ItemRcRaceBinding
+import com.dam.ciclismoApp.models.objects.Participant
 import com.dam.ciclismoApp.models.objects.Race
+import com.dam.ciclismoApp.models.objects.Registration
 import com.dam.ciclismoApp.models.objects.User
 import com.dam.ciclismoApp.models.repositories.CyclingRepository
+import com.dam.ciclismoApp.models.repositories.ParticipantsRepository
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
@@ -37,6 +41,7 @@ import com.dam.ciclismoApp.utils.GridSpacingItemDecoration
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
+import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -162,6 +167,7 @@ class RacesFragment : Fragment() {
         ) {
             override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                 var item = mList[position]
+                var u: User = F.parseJsonToObject<User>(P.get(P.S.JSON_USER))!!
                 holder.itemBinding.imgRace.apply {
                     load(item.image){
                         placeholder(R.drawable.loading)
@@ -181,7 +187,6 @@ class RacesFragment : Fragment() {
                     }
                 }
                 holder.itemBinding.imgInscrito.apply {
-                    var u: User = F.parseJsonToObject<User>(P.get(P.S.JSON_USER))!!
                     u.cyclingParticipants.forEach{par ->
                         if (par.race.id == item.id){
                             this.visibility = View.VISIBLE
@@ -193,6 +198,28 @@ class RacesFragment : Fragment() {
                     DialogManager.showCustomDialog(requireContext(), dialogBinding, false) { dialog ->
 //                        dialogBinding.imgRaceDialogParticipant.load(R.drawable.race)
 //                        dialogBinding.lblParticipationDialog.text = "${item.race.name.toUpperCase()}\n${item.race.description}"
+                        dialogBinding.btnParticipate.setOnClickListener {
+                            /*val registration = Registration(u.id,item.id)
+                            lifecycleScope.launch {
+                                try {
+                                    ParticipantsRepository().addParticipant(registration)
+
+                                } catch (e:Exception) {
+                                    F.showToast(requireContext(),"Ha habido un problema con la inscripción. Inténtelo más tarde.")
+                                }
+
+                            }*/
+                            var participant:Participant = Participant(0,u,item,"",97,false)
+                            var participants:ArrayList<Participant> = arrayListOf()
+                            F.parseJsonToList<Participant>(P.get(P.S.JSON_PARTICIPANTS)).map { item ->
+                                participants.add(item)
+                            }
+                            participants.add(participant)
+                            val moshi = Moshi.Builder().build()
+                            val adapter = moshi.adapter(List::class.java)
+                            val json = adapter.toJson(participants)
+                            P[P.S.JSON_PARTICIPANTS] = json
+                        }
                         dialogBinding.imgCloseButton.setOnClickListener {
                             dialog.dismiss()
                         }

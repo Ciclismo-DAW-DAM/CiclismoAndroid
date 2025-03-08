@@ -2,9 +2,11 @@ package com.dam.ciclismoApp.models.repositories
 
 import com.dam.ciclismoApp.models.endpoints.ParticipantsApi
 import com.dam.ciclismoApp.models.objects.Participant
+import com.dam.ciclismoApp.models.objects.Registration
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
+import retrofit2.http.Body
 
 class ParticipantsRepository {
     val participantsApi:ParticipantsApi
@@ -16,5 +18,5 @@ class ParticipantsRepository {
             .create()
     }
 
-//    suspend fun getParticipants():List<Participant> = participantsApi.getParticipants()
+    suspend fun addParticipant(@Body registration: Registration):Participant = participantsApi.addParticipant(registration)
 }
