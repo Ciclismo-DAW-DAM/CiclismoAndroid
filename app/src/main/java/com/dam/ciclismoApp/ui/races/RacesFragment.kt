@@ -27,8 +27,6 @@ import com.dam.ciclismoApp.models.objects.User
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
-import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
-import com.dam.ciclismoApp.utils.F.Companion.parseJsonToObject
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
@@ -60,9 +58,7 @@ class RacesFragment : Fragment() {
     }
 
     private fun initView() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (findNavController().currentDestination?.id == R.id.navigation_race) {
                         DialogManager.showConfirmationDialog(
@@ -82,20 +78,22 @@ class RacesFragment : Fragment() {
                         findNavController().navigateUp()
                     }
                 }
-            }
-        )
-        val lblSubtitle: TextView = binding.textView2
+            })
         viewModel.numRaces.observe(viewLifecycleOwner) {
-            lblSubtitle.text = "Has encontrado ${viewModel.numRaces.value} carreras"
+            binding.textView2.text = "Has encontrado ${viewModel.numRaces.value} carreras"
         }
-        viewModel.mLisRaces.observe(viewLifecycleOwner) {
-            viewModel.mLisRaces.value?.let { it1 -> setupRcPartipations(it1) }
+        viewModel.filter.observe(viewLifecycleOwner) {
+            viewModel.setmListRacesFiltered(filterRaces())
+        }
+        viewModel.mLisRacesFiltered.observe(viewLifecycleOwner) {
+            viewModel.mLisRacesFiltered.value?.let { it1 -> setupRcPartipations(it1) }
+            viewModel.setNumRace(it.size)
         }
     }
 
     private fun initData() {
-        viewModel.setmListRaces(parseJsonToList(P.get(P.S.JSON_RACES)))
-        viewModel.mLisRaces.value?.size?.let { viewModel.setNumParticipations(it) }
+        viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
+        filterRaces()
     }
 
     //region [RC & data]
@@ -126,7 +124,7 @@ class RacesFragment : Fragment() {
                     }
                 }
                 holder.itemBinding.imgInscrito.apply {
-                    var u: User = parseJsonToObject<User>(P.get(P.S.JSON_USER))!!
+                    var u: User = F.parseJsonToObject<User>(P.get(P.S.JSON_USER))!!
                     u.cyclingParticipants.forEach{par ->
                         if (par.race.id == item.id){
                             this.visibility = View.VISIBLE
@@ -152,6 +150,27 @@ class RacesFragment : Fragment() {
             setHasFixedSize(false)
             recycledViewPool.clear()
         }
+    }
+
+    private fun filterRaces(): List<Race> {
+        val searchTerm = viewModel.filter.value?.lowercase() ?: ""
+        return viewModel.mLisRaces.value?.filter { race ->
+            listOf(
+                race.id.toString(),
+                race.name,
+                race.description,
+                race.date,
+                race.distance.toString(),
+                race.location,
+                race.coordinates,
+                race.unevenness.toString(),
+                race.fee.toString(),
+                race.slots.toString(),
+                race.status,
+                race.category,
+                race.image
+            ).any { it.lowercase().contains(searchTerm) }
+        } ?: emptyList()
     }
     //endregion
 

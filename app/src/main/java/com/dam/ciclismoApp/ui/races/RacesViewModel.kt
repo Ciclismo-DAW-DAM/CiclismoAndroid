@@ -15,21 +15,35 @@ class RacesViewModel : ViewModel() {
     private var _mListRaces = MutableLiveData<List<Race>>().apply {
         value = listOf()
     }
+    private var _mListRacesFiltered = MutableLiveData<List<Race>>().apply {
+        value = listOf()
+    }
+    private var _filter = MutableLiveData<String>().apply {
+        value = ""
+    }
     //endregion
 
 
     //region [Livedata]
     var numRaces: LiveData<Int> = _numRaces
     var mLisRaces: LiveData<List<Race>> = _mListRaces
+    var mLisRacesFiltered: LiveData<List<Race>> = _mListRacesFiltered
+    var filter: LiveData<String> = _filter
     //endregion
 
 
     //region [Getter & Setters]
-    fun setNumParticipations(value: Int) {
+    fun setNumRace(value: Int) {
         _numRaces.value = value
     }
     fun setmListRaces(value: List<Race>) {
         _mListRaces.value = value
+    }
+    fun setmListRacesFiltered(value: List<Race>) {
+        _mListRacesFiltered.value = value
+    }
+    fun setFilter(value: String) {
+        _filter.value = value
     }
     //endregion
 }
