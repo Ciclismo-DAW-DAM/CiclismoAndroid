@@ -1,6 +1,8 @@
 package com.dam.ciclismoApp.ui.login
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +20,7 @@ import com.dam.ciclismoApp.models.objects.LogIn
 import com.dam.ciclismoApp.models.objects.LogInResponse
 import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.ui.MainActivity
+import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
 import kotlinx.coroutines.launch
@@ -35,11 +38,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-
-
-
         return root
     }
 
@@ -47,9 +45,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-
             iniciarSesion()
-
+        }
+        binding.lblSignUp.setOnClickListener {
+            F.openBrowser("https://www.google.com", requireContext())
         }
     }
     //endregion
@@ -199,7 +198,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         """.trimIndent()
         var a = P.get(P.S.JSON_USER)
         val intent = Intent(requireActivity(), MainActivity::class.java)
-         startActivity(intent)
+        startActivity(intent)
         requireActivity().finish() // Cierra AuthActivity
     }
+
 }

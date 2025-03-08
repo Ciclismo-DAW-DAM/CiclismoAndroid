@@ -1,6 +1,10 @@
 package com.dam.ciclismoApp.utils
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.net.Uri
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +16,7 @@ import com.dam.ciclismoApp.R
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -46,7 +51,7 @@ class F {
             context: Context,
             message: String,
             duration: Int = Toast.LENGTH_SHORT,
-            backgroundColor: Int = R.color.black, // Color por defecto
+            backgroundColor: Int = R.color.black,
             textColor: Int = Color.WHITE,
             icon: Int? = null
         ) {
@@ -59,7 +64,7 @@ class F {
 
             toastText.text = message
             toastText.setTextColor(textColor)
-            toastContainer.setBackgroundColor(ContextCompat.getColor(context, backgroundColor))
+            toastContainer.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, backgroundColor))
 
             icon?.let {
                 toastIcon.setImageResource(it)
@@ -80,6 +85,7 @@ class F {
             filterText: String,
             noinline attributes: ((T) -> List<String>)? = null
         ): List<T> = withContext(Dispatchers.IO) {
+            delay(200) // Simulación de una operación de filtrado más lenta
             val searchTerms = filterText.lowercase().split(" ").filter { it.isNotBlank() }
 
             list?.filter { item ->
@@ -92,6 +98,16 @@ class F {
                     searchableAttributes.any { it.lowercase().contains(term) }
                 }
             } ?: emptyList()
+        }
+
+        inline fun openBrowser(url: String, context: Context) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            try {
+                context.startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                showToast(context, "No se puede abrir el navegador", Toast.LENGTH_SHORT, R.color.red_spring)
+            }
         }
     }
 }
