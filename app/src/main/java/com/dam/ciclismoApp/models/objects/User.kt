@@ -2,6 +2,8 @@ package com.dam.ciclismoApp.models.objects
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.squareup.moshi.Moshi
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
@@ -16,4 +18,26 @@ data class User(
     val age:Int,
     val gender:String,
     val image:String
-):Serializable
+):Serializable {
+    val moshi = MoshiConverterFactory.create()
+    fun toJson(): String {
+        val moshi = Moshi.Builder()
+            .add(moshi)
+            .build()
+        val adapter = moshi.adapter(User::class.java)
+        val json = adapter.toJson(this)
+        return json
+    }
+
+    fun fromJson(json:String): User {
+        val moshi = Moshi.Builder()
+            .add(moshi)
+            .build()
+
+        val adapter = moshi.adapter(User::class.java)
+
+        val usuario: User? = adapter.fromJson(json)
+
+        return checkNotNull(usuario)
+    }
+}

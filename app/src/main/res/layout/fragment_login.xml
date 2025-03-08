@@ -41,7 +41,7 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/custom_edittext_up"
         android:fontFamily="@font/open_sans"
-        android:hint="Usuario"
+        android:hint="Email"
         android:padding="16dp"
         android:textColorHint="@color/grey"
         android:textSize="16sp"

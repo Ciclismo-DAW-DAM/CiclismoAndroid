@@ -2,6 +2,7 @@ package com.dam.ciclismoApp.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dam.ciclismoApp.R
 import com.dam.ciclismoApp.databinding.FragmentLoginBinding
 import com.dam.ciclismoApp.databinding.FragmentParticipationsBinding
+import com.dam.ciclismoApp.models.objects.LogIn
+import com.dam.ciclismoApp.models.objects.LogInResponse
+import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.ui.MainActivity
+import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel by viewModels<LoginViewModel> { GenericViewModelFactory { LoginViewModel() } }
@@ -40,10 +47,24 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish() // Cierra AuthActivity
+
+            iniciarSesion()
+
         }
     }
     //endregion
+
+    fun iniciarSesion() {
+        val logIn:LogIn = LogIn(binding.etUsername.text.toString(),binding.etPasswordUpd.text.toString())
+        lifecycleScope.launch {
+            val respuesta:LogInResponse = UsersRepository().logIn(logIn)
+            if (respuesta.message.contains("200")) {
+                Log.d("Mensaje", respuesta.user.toJson())
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                P.set(P.S.JSON_USER,respuesta.user)
+                startActivity(intent)
+                requireActivity().finish() // Cierra AuthActivity
+            }
+        }
+    }
 }

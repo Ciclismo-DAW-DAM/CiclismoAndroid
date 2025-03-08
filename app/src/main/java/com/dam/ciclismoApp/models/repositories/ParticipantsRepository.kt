@@ -16,5 +16,5 @@ class ParticipantsRepository {
             .create()
     }
 
-    suspend fun getParticipants():List<Participant> = participantsApi.getParticipants()
+    suspend fun getParticipants():List<Participant> = participantsApi.getParticipantsFromRace()
 }

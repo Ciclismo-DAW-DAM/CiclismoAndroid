@@ -12,9 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.dam.ciclismoApp.databinding.DialogUpdateUserBinding
 import com.dam.ciclismoApp.databinding.FragmentProfileBinding
+import com.dam.ciclismoApp.models.objects.User
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.ui.login.LoginViewModel
 import com.dam.ciclismoApp.utils.DialogManager
+import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
+import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -32,6 +35,7 @@ class ProfileFragment : Fragment() {
 
         inicializarBinding(inflater,container)
         inicializarBotones()
+        cargarDatos()
         val root: View = binding.root
 
 //        val textView: TextView = binding.textView3
@@ -84,6 +88,12 @@ class ProfileFragment : Fragment() {
             )
         }
          */
+    }
+
+    fun cargarDatos() {
+        val user: User? = null
+        //user.fromJson(P.get(P.S.JSON_USER))
+        //viewModel.setName(user.name)
     }
 
     fun cerrar() {
