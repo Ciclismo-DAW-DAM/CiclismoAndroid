@@ -3,8 +3,12 @@ package com.dam.ciclismoApp.ui.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dam.ciclismoApp.models.objects.User
 
 class ProfileViewModel : ViewModel() {
+    private var _user = MutableLiveData<User>().apply {
+        value = User()
+    }
     private var _name = MutableLiveData<String>().apply {
         value = ""
     }
@@ -38,6 +42,7 @@ class ProfileViewModel : ViewModel() {
 //endregion
 
     //region [Livedata]
+    var user: LiveData<User> = _user
     var name: LiveData<String> = _name
     var mail: LiveData<String> = _mail
     var age: LiveData<Int> = _age
@@ -51,6 +56,9 @@ class ProfileViewModel : ViewModel() {
 //endregion
 
     //region [Getter & Setters]
+    fun setUser(value: User) {
+        _user.value = value
+    }
     fun setName(value: String) {
         _name.value = value
     }

@@ -196,7 +196,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
               "image": "https://example.com/images/juan_perez.jpg"
             }
         """.trimIndent()
-        var a = P.get(P.S.JSON_USER)
         val intent = Intent(requireActivity(), MainActivity::class.java)
         startActivity(intent)
         requireActivity().finish() // Cierra AuthActivity
