@@ -2,6 +2,7 @@ package com.dam.ciclismoApp.models.objects
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.squareup.moshi.Moshi
 import java.io.Serializable
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -40,6 +41,20 @@ data class Race(
         image = "",
         participants = emptyList()
     )
+
+    fun toJson(): String {
+        val moshi = Moshi.Builder().build()
+        val adapter = moshi.adapter(Race::class.java)
+        val json = adapter.toJson(this)
+        return json
+    }
+
+    fun fromJson(json:String): Race {
+        val moshi = Moshi.Builder().build()
+        val adapter = moshi.adapter(Race::class.java)
+        val carrera: Race? = adapter.fromJson(json)
+        return checkNotNull(carrera)
+    }
 
     fun getFechaComoOffsetDateTime(): OffsetDateTime =
         OffsetDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
