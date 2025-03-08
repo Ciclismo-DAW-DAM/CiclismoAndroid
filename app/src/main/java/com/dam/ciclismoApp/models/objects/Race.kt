@@ -13,17 +13,34 @@ data class Race(
     val name:String,
     val description:String,
     val date: String,
-    @Json(name = "distance_km") val distance:Double,
+    @Json(name = "distance_km") val distance:Int,
     val location:String,
     val coordinates:String,
     val unevenness:Int,
-    @Json(name = "entry_fee") val fee:Double,
+    @Json(name = "entry_fee") val fee:Int,
     @Json(name = "available_slots") val slots:Int,
     val status:String,
     val category:String,
     val image:String,
     @Json(name = "cyclingParticipants") val participants:List<Participant> = emptyList()
 ):Serializable {
+    constructor() : this(
+        id = 0,
+        name = "",
+        description = "",
+        date = "",
+        distance = 0,
+        location = "",
+        coordinates = "",
+        unevenness = 0,
+        fee = 0,
+        slots = 0,
+        status = "",
+        category = "",
+        image = "",
+        participants = emptyList()
+    )
+
     fun getFechaComoOffsetDateTime(): OffsetDateTime =
         OffsetDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 }
