@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import coil3.load
 import coil3.request.error
 import coil3.request.placeholder
@@ -14,10 +16,13 @@ import com.dam.ciclismoApp.R
 import com.dam.ciclismoApp.databinding.DialogUpdateUserBinding
 import com.dam.ciclismoApp.databinding.FragmentProfileBinding
 import com.dam.ciclismoApp.models.objects.User
+import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.utils.DialogManager
+import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
+import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -51,7 +56,33 @@ class ProfileFragment : Fragment() {
                     dialog.dismiss()
                 }
                 dialogBinding.btnUpdateUser.setOnClickListener {
-                    dialog.dismiss()
+                    lifecycleScope.launch {
+                        val newUser = checkNotNull(viewModel.user.value)
+                        val oldPassword = checkNotNull(dialogBinding.etOldPasswordUpd.text).toString()
+                        //
+                        if (oldPassword.isEmpty()) {
+                            F.showToast(requireContext(),"Debe introducir su contraseña actual para confirmar los cambios.")
+                        } else {
+                            newUser.oldpassword = oldPassword
+                            if (dialogBinding.etUserUpd.text.isNotEmpty())  newUser.name = dialogBinding.etUserUpd.text.toString()
+
+                            val newPass = checkNotNull(dialogBinding.etPasswordUpd.text).toString()
+                            val confNewPass = checkNotNull(dialogBinding.etPasswordUpdConfirm.text).toString()
+                            if (newPass.equals(confNewPass) && newPass.isNotEmpty()) {
+                                newUser.newpassword = newPass
+                            }
+
+                            //val respuesta:Boolean = UsersRepository().updUser(newUser)
+                            val respuesta = true
+                            if (respuesta) {
+                                //val updatedUser: User = UsersRepository().getUser(newUser.id)
+                                P[P.S.JSON_USER] = newUser.toJson()
+                                dialog.dismiss()
+                            } else {
+                                F.showToast(requireContext(),"Algo ha fallado.")
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -120,7 +151,8 @@ class ProfileFragment : Fragment() {
     }
 
     fun initData() {
-        val user: User = User().fromJson(P.get(P.S.JSON_USER))
+        viewModel.setUser(User().fromJson(P.get(P.S.JSON_USER)))
+        val user: User = checkNotNull(viewModel.user.value)
         viewModel.setName(user.name)
         viewModel.setMail(user.email)
         viewModel.setAge(user.getAgeInYears())

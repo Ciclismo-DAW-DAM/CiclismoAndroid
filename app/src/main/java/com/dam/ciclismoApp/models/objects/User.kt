@@ -11,16 +11,18 @@ import java.time.temporal.ChronoUnit
 
 @JsonClass(generateAdapter = true)
 data class User(
-    val id:Int,
-    val email:String,
-    val roles:List<String>,
-    val name:String,
-    val password:String?,
-    val banned:Boolean,
+    var id:Int,
+    var email:String,
+    var roles:List<String>,
+    var name:String,
+    var password:String?,
+    var banned:Boolean,
     @Json(name = "cyclingParticipants") val cyclingParticipants:List<Participant>,
-    val age:String,
-    val gender:String,
-    val image:String
+    var age:String,
+    var gender:String,
+    var image:String,
+    var oldpassword:String?,
+    var newpassword:String?
 ):Serializable {
     constructor() : this(
         id = 0,
@@ -32,7 +34,9 @@ data class User(
         cyclingParticipants = emptyList(),
         age = "",
         gender = "",
-        image = ""
+        image = "",
+        oldpassword = "",
+        newpassword = ""
     )
     fun toJson(): String {
         val moshi = Moshi.Builder().build()
