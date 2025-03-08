@@ -133,21 +133,21 @@ class ProfileFragment : Fragment() {
         }
 
 
-        /*
+
         binding.btnDeleteUser.setOnClickListener{
             DialogManager.showConfirmationDialog(
                 requireContext(),
                 "¡ATENCIÓN!",
                 "¿Estás seguro de eliminar la cuenta? (Esta acción no se puede deshacer)",
                 onConfirm = {
-                    lifecycleScope.launch {
-                        //Se borra
-                    }
+                    /*lifecycleScope.launch {
+                        UsersRepository().delUser(checkNotNull(viewModel.user.value))
+                    }*/
                     cerrar()
                 }
             )
         }
-         */
+
     }
 
     fun initData() {

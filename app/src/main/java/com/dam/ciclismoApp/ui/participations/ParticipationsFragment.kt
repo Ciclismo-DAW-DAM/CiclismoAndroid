@@ -20,6 +20,8 @@ import com.dam.ciclismoApp.databinding.DialogParticipantBinding
 import com.dam.ciclismoApp.databinding.FragmentParticipationsBinding
 import com.dam.ciclismoApp.databinding.ItemRcParticipationBinding
 import com.dam.ciclismoApp.models.objects.Participant
+import com.dam.ciclismoApp.models.objects.User
+import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
@@ -104,6 +106,17 @@ class ParticipationsFragment : Fragment() {
     }
 
     private fun initData() {
+        /*var participaciones:List<Participant> = emptyList()
+        lifecycleScope.launch {
+            try {
+                participaciones = UsersRepository().getUser(User().fromJson(P.get(P.S.JSON_USER)).id).cyclingParticipants
+            } catch (e:Exception) {
+                F.showToast(requireContext(),"Algo ha fallado al recibir los datos.")
+            }
+
+            viewModel.setmListParticipations(participaciones)
+        }*/
+
         viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
     }
 

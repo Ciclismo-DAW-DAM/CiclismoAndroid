@@ -27,6 +27,7 @@ import com.dam.ciclismoApp.databinding.FragmentRacesBinding
 import com.dam.ciclismoApp.databinding.ItemRcRaceBinding
 import com.dam.ciclismoApp.models.objects.Race
 import com.dam.ciclismoApp.models.objects.User
+import com.dam.ciclismoApp.models.repositories.CyclingRepository
 import com.dam.ciclismoApp.ui.AuthActivity
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
@@ -125,6 +126,17 @@ class RacesFragment : Fragment() {
     }
 
     private fun initData() {
+        /*var races:List<Race> = emptyList()
+        lifecycleScope.launch {
+            try {
+                races = CyclingRepository().getRaces()
+            } catch (e:Exception) {
+                F.showToast(requireContext(),"Algo ha fallado al recibir los datos.")
+            }
+
+            viewModel.setmListRaces(races)
+        }*/
+
         viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
     }
 

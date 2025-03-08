@@ -26,4 +26,5 @@ class UsersRepository {
     suspend fun logIn(logIn: LogIn): LogInResponse = usersApi.logIn(logIn)
     suspend fun getUser(id:Int): User = usersApi.getUser(id)
     suspend fun updUser(user:User): Boolean = usersApi.updUser(user)
+    suspend fun delUser(user:User) = usersApi.delUser(user)
 }
