@@ -277,7 +277,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/open_sans_bold"
-                    android:text="Total gastado:"
+                    android:text="Total gastado (En €):"
                     android:textColor="@color/blue_spring_dark"
                     app:layout_constraintEnd_toStartOf="@+id/guideline55"
                     app:layout_constraintStart_toStartOf="parent"
