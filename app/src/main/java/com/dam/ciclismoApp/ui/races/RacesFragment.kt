@@ -6,9 +6,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
@@ -189,14 +192,7 @@ class RacesFragment : Fragment() {
                     }
                 }
                 holder.itemBinding.clParent.setOnClickListener {
-                    val dialogBinding = DialogRaceDetailBinding.inflate(layoutInflater)
-                    DialogManager.showCustomDialog(requireContext(), dialogBinding, false) { dialog ->
-//                        dialogBinding.imgRaceDialogParticipant.load(R.drawable.race)
-//                        dialogBinding.lblParticipationDialog.text = "${item.race.name.toUpperCase()}\n${item.race.description}"
-                        dialogBinding.imgCloseButton.setOnClickListener {
-                            dialog.dismiss()
-                        }
-                    }
+                    RaceDetailDialog.setupRcDetailDialog(item, requireContext(), layoutInflater)
                 }
             }
         }
@@ -214,8 +210,47 @@ class RacesFragment : Fragment() {
             recycledViewPool.clear()
         }
     }
-    //endregion
 
+    fun initMap(webView: WebView, coords: String) {
+        webView.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            useWideViewPort = true
+            loadWithOverviewMode = true
+        }
+        val mapHtml = """
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                <style> 
+                    html, body { margin: 0; padding: 0; height: 100%; }  
+                    #map { height: 100vh; width: 100vw; } 
+                </style>
+            </head>
+            <body>
+                <div id="map"></div>
+                <script>
+                    var coords = [$coords];
+                    var map = L.map('map').setView(coords, 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                    var marker = L.marker(coords).addTo(map);
+                </script>
+            </body>
+            </html>
+        """.trimIndent()
+
+
+        webView.loadDataWithBaseURL(null, mapHtml, "text/html", "UTF-8", null)
+    }
+
+    fun calcAviableSlots(maxSlots: Int): Int {
+        //Temporal
+        return 69
+    }
+    //endregion
 
 }
 
