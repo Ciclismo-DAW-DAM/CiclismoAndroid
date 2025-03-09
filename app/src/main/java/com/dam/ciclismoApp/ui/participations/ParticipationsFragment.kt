@@ -23,6 +23,7 @@ import com.dam.ciclismoApp.databinding.ItemRcParticipationBinding
 import com.dam.ciclismoApp.models.objects.Participant
 import com.dam.ciclismoApp.models.objects.User
 import com.dam.ciclismoApp.models.repositories.UsersRepository
+import com.dam.ciclismoApp.ui.races.RaceDetailDialog
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
@@ -151,14 +152,7 @@ class ParticipationsFragment : Fragment() {
                     }
                 }
                 holder.itemBinding.clParent.setOnClickListener {
-                    val dialogBinding = DialogParticipantBinding.inflate(layoutInflater)
-                    DialogManager.showCustomDialog(requireContext(), dialogBinding, false) { dialog ->
-                        dialogBinding.imgRaceDialogParticipant.load(R.drawable.race)
-                        dialogBinding.lblParticipationDialog.text = "${item.race.name.toUpperCase()}\n${item.race.description}"
-                        dialogBinding.btnClose.setOnClickListener {
-                            dialog.dismiss()
-                        }
-                    }
+                    RaceDetailDialog.setupRcDetailDialog(item.race, requireContext(), layoutInflater)
                 }
             }
         }

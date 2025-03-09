@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_spring_dark"
+    android:paddingVertical="32dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_dialog"
+    android:backgroundTint="@color/blue_spring_dark"
     android:paddingStart="8dp"
     android:paddingTop="8dp"
     android:paddingEnd="8dp"
-    android:paddingBottom="16dp"
-    app:layout_constraintHorizontal_weight="1"
-    app:layout_constraintVertical_weight="1">
+    android:paddingBottom="16dp">
 
     <ImageView
         android:id="@+id/imgCloseButton"
@@ -32,7 +37,7 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:fontFamily="@font/open_sans_bold"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="Sierra Nevada Challenge"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -57,25 +62,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMainName" />
 
-    <TextView
-        android:id="@+id/txtMainDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/open_sans"
-        android:text="14/05/2025"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtMainLocation"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ScrollView
-        android:layout_width="0dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMainLocation">
+        app:layout_constraintTop_toBottomOf="@id/txtMainLocation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -86,11 +80,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans_bold"
-                android:text="Estado:"
+                android:text="Estado de inscripción:"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtDescription"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgRaceImage" />
 
@@ -124,8 +118,8 @@
 
             <ImageView
                 android:id="@+id/imgStatusIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_check"
@@ -136,17 +130,19 @@
 
             <Button
                 android:id="@+id/btnParticipate"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/green_spring"
                 android:fontFamily="@font/open_sans_bold"
-                android:text="Desinscribirme"
+                android:text="INSCRIBIRME"
                 android:textColor="@color/blue_spring_dark"
                 app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgRaceImage" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
             <TextView
                 android:id="@+id/txtDescription"
@@ -173,13 +169,14 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDescription">
+                app:layout_constraintTop_toBottomOf="@id/txtDescription">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -189,8 +186,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:scaleType="fitXY"
@@ -207,7 +204,7 @@
                             android:text="Armilla, Granada"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -217,8 +214,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:src="@drawable/ic_calendar"
@@ -234,7 +231,7 @@
                             android:text="09:00 - 14/05/2025"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -244,8 +241,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:src="@drawable/ic_num_part"
@@ -261,7 +258,7 @@
                             android:text="0"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -271,7 +268,7 @@
                             android:text="plazas libres"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -281,8 +278,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:src="@drawable/ic_euro"
@@ -298,7 +295,7 @@
                             android:text="0.00"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -308,7 +305,7 @@
                             android:text="€ inscripción"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -317,8 +314,8 @@
                     android:id="@+id/frameLayout"
                     android:layout_width="3dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@color/green_spring" />
 
                 <LinearLayout
@@ -334,8 +331,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:src="@drawable/ic_flag"
@@ -351,7 +348,7 @@
                             android:text="0"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -361,7 +358,7 @@
                             android:text="km"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -371,8 +368,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:src="@drawable/ic_arrow_updown"
@@ -388,7 +385,7 @@
                             android:text="+12"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -398,7 +395,7 @@
                             android:text="km"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -408,8 +405,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
                             android:src="@drawable/ic_road"
@@ -425,7 +422,7 @@
                             android:text="Carretera"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -435,30 +432,42 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="0"
-                            android:src="@drawable/ic_difficulty"
+                            android:src="@drawable/ic_male_female"
                             app:tint="@color/green_spring"
                             tools:tint="@color/green_spring" />
 
                         <TextView
-                            android:id="@+id/txtDifficulty"
+                            android:id="@+id/txtGender"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/open_sans"
-                            android:text="Fácil"
+                            android:text="Todos"
                             android:textAlignment="textEnd"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
 
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout3" />
+
             <LinearLayout
+                android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -467,7 +476,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                app:layout_constraintTop_toBottomOf="@id/webView">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -486,6 +495,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
