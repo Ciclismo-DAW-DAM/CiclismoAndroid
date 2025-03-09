@@ -45,5 +45,6 @@ class RacesViewModel : ViewModel() {
     fun setFilter(value: String) {
         _filter.value = value
     }
+
     //endregion
 }

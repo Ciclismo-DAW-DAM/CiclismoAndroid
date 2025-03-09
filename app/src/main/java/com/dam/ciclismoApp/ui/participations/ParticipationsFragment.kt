@@ -32,6 +32,8 @@ import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -69,14 +71,23 @@ class ParticipationsFragment : Fragment() {
     //endregion
 
     private fun initView() {
-        viewModel.numParticipations.observe(viewLifecycleOwner) {
-            binding.textView2.text = "Has particpado en ${viewModel.numParticipations.value} carreras"
+        viewModel.numParticipations.observe(viewLifecycleOwner) { num ->
+            binding.textView2.text = "Has participado en $num carreras"
         }
-        viewModel.mLisParticipations.observe(viewLifecycleOwner) {
-            viewModel.mLisParticipations.value?.let { it1 -> setupRcPartipations(it1) }
+        viewModel.mLisParticipations.observe(viewLifecycleOwner) { list ->
+            list?.let {
+                setupRcPartipations(it)
+            }
         }
         binding.txtFilterPart.addTextChangedListener(object : TextWatcher {
+            private var filterJob: Job? = null
+
             override fun afterTextChanged(s: Editable?) {
+                filterJob?.cancel()
+                filterJob = lifecycleScope.launch {
+                    delay(300)
+                    s?.let { viewModel.setFilter(it.toString()) }
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -84,37 +95,38 @@ class ParticipationsFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.setFilter(s.toString())
             }
         })
         binding.btnCleanFilterPart.setOnClickListener {
             binding.txtFilterPart.text.clear()
         }
-        viewModel.filter.observe(viewLifecycleOwner) {
-            lifecycleScope.launch {
-                withContext(Dispatchers.Main) {
-                    DialogManager.showLoadingDialog(requireContext()) // Asegurar que esté en el hilo principal
-                }
-                val filteredList = F.filterList(viewModel.mLisParticipations.value, it)
-                withContext(Dispatchers.Main) {
-                    viewModel.setmListParticipationsFiltered(filteredList) // Actualiza LiveData en Main
-                    DialogManager.dismissLoadingDialog()
-                }
+        viewModel.mLisParticipationsFiltered.observe(viewLifecycleOwner) { filteredList ->
+            filteredList?.let {
+                setupRcPartipations(it)
+                viewModel.setNumParticipations(it.size)
             }
-        }
-        viewModel.mLisParticipationsFiltered.observe(viewLifecycleOwner) {
-            viewModel.mLisParticipationsFiltered.value?.let { it1 -> setupRcPartipations(it1) }
-            viewModel.setNumParticipations(it.size)
         }
         binding.swipeRefreshLayoutPart.apply {
             this.setProgressViewOffset(true, 200, 400)
             this.setOnRefreshListener {
                 lifecycleScope.launch {
                     binding.swipeRefreshLayoutPart.isRefreshing = false
-//                    viewModel.setFilter("Tour")
                 }
             }
         }
+        viewModel.filter.observe(viewLifecycleOwner) { filterText ->
+            lifecycleScope.launch {
+                val races = viewModel.mLisParticipations.value ?: return@launch
+                val filteredList = F.filterList(races, filterText)
+
+                withContext(Dispatchers.Main) {
+                    if (filteredList != viewModel.mLisParticipationsFiltered.value) {
+                        viewModel.setmListParticipationsFiltered(filteredList)
+                    }
+                }
+            }
+        }
+
     }
 
     private fun initData() {
@@ -171,7 +183,6 @@ class ParticipationsFragment : Fragment() {
         }
     }
     //endregion
-
 
 }
 

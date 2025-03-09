@@ -96,36 +96,36 @@ class ProfileFragment : Fragment() {
                 }
             )
         }
-        viewModel.name.observe(viewLifecycleOwner) {
-            binding.lblName.text = viewModel.name.value
+        viewModel.name.observe(viewLifecycleOwner) { name ->
+            binding.lblName.text = name ?: "No Name"
         }
-        viewModel.mail.observe(viewLifecycleOwner) {
-            binding.lblMail.text = viewModel.mail.value
+        viewModel.mail.observe(viewLifecycleOwner) { mail ->
+            binding.lblMail.text = mail ?: "No Email"
         }
-        viewModel.age.observe(viewLifecycleOwner) {
-            binding.lblAge.text = viewModel.age.value.toString()
+        viewModel.age.observe(viewLifecycleOwner) { age ->
+            binding.lblAge.text = age?.toString() ?: "0"
         }
-        viewModel.gender.observe(viewLifecycleOwner) {
-            binding.lblGender.text = viewModel.gender.value
+        viewModel.gender.observe(viewLifecycleOwner) { gender ->
+            binding.lblGender.text = gender ?: "Unknown"
         }
-        viewModel.totalParticipations.observe(viewLifecycleOwner) {
-            binding.lblTotalParticipations.text = viewModel.totalParticipations.value.toString()
+        viewModel.totalParticipations.observe(viewLifecycleOwner) { total ->
+            binding.lblTotalParticipations.text = total?.toString() ?: "0"
         }
-        viewModel.prefCategory.observe(viewLifecycleOwner) {
-            binding.lblPrefCat.text = viewModel.prefCategory.value
+        viewModel.prefCategory.observe(viewLifecycleOwner) { category ->
+            binding.lblPrefCat.text = category ?: "No Preference"
         }
-        viewModel.prefLocation.observe(viewLifecycleOwner) {
-            binding.lblPrefLocation.text = viewModel.prefLocation.value
+        viewModel.prefLocation.observe(viewLifecycleOwner) { location ->
+            binding.lblPrefLocation.text = location ?: "No Location"
         }
-        viewModel.kmTravelled.observe(viewLifecycleOwner) {
-            binding.lblKmTravelled.text = viewModel.kmTravelled.value.toString()
+        viewModel.kmTravelled.observe(viewLifecycleOwner) { km ->
+            binding.lblKmTravelled.text = km?.toString() ?: "0"
         }
-        viewModel.totalSpent.observe(viewLifecycleOwner) {
-            binding.lblTotalSpent.text = viewModel.totalSpent.value.toString()
+        viewModel.totalSpent.observe(viewLifecycleOwner) { total ->
+            binding.lblTotalSpent.text = total?.toString() ?: "0"
         }
-        viewModel.imgProfile.observe(viewLifecycleOwner) {
+        viewModel.imgProfile.observe(viewLifecycleOwner) { img ->
             binding.imageView3.apply {
-                load(viewModel.imgProfile) {
+                load(img) {
                     placeholder(R.drawable.loading)
                     error(R.drawable.ic_broken_img)
                 }
@@ -161,18 +161,37 @@ class ProfileFragment : Fragment() {
     }
 
     fun initData() {
-        viewModel.setUser(User().fromJson(P.get(P.S.JSON_USER)))
-        val user: User = checkNotNull(viewModel.user.value)
-        viewModel.setName(user.name)
-        viewModel.setMail(user.email)
-        viewModel.setAge(user.getAgeInYears())
-        viewModel.setGender(user.gender)
-        val participaciones = user.cyclingParticipants
-        viewModel.setTotalParticipations(participaciones.size)
-        viewModel.setPrefLocation(checkNotNull(participaciones.groupingBy { it.race.location }.eachCount().maxByOrNull { it.value }).key)
-        viewModel.setPrefCategory(checkNotNull(participaciones.groupingBy { it.race.category }.eachCount().maxByOrNull { it.value }).key)
-        viewModel.setKmTravelled(participaciones.sumOf { it.race.distance })
-        viewModel.setTotalSpent(participaciones.sumOf { it.race.fee })
+        lifecycleScope.launch {
+            val userJson = P.get(P.S.JSON_USER)
+            val user = User().fromJson(userJson) ?: return@launch
+
+            viewModel.setUser(user)
+            viewModel.setName(user.name)
+            viewModel.setMail(user.email)
+            viewModel.setAge(user.getAgeInYears())
+            viewModel.setGender(user.gender)
+
+            val participaciones = user.cyclingParticipants
+            if (participaciones.isNotEmpty()) {
+                val prefLocation = participaciones
+                    .groupingBy { it.race.location }
+                    .eachCount()
+                    .maxByOrNull { it.value }
+                    ?.key ?: "No Location"
+
+                val prefCategory = participaciones
+                    .groupingBy { it.race.category }
+                    .eachCount()
+                    .maxByOrNull { it.value }
+                    ?.key ?: "No Category"
+
+                viewModel.setTotalParticipations(participaciones.size)
+                viewModel.setPrefLocation(prefLocation)
+                viewModel.setPrefCategory(prefCategory)
+                viewModel.setKmTravelled(participaciones.sumOf { it.race.distance })
+                viewModel.setTotalSpent(participaciones.sumOf { it.race.fee })
+            }
+        }
     }
 
     fun cerrar() {

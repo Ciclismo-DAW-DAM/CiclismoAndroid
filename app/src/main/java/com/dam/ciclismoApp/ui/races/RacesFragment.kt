@@ -41,6 +41,7 @@ import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -97,7 +98,14 @@ class RacesFragment : Fragment() {
                 }
             })
         binding.txtFilter.addTextChangedListener(object : TextWatcher {
+            private var filterJob: Job? = null
+
             override fun afterTextChanged(s: Editable?) {
+                filterJob?.cancel()
+                filterJob = lifecycleScope.launch {
+                    delay(300)
+                    s?.let { viewModel.setFilter(s.toString())}
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -111,24 +119,19 @@ class RacesFragment : Fragment() {
         binding.btnCleanFilter.setOnClickListener {
             binding.txtFilter.text.clear()
         }
-        viewModel.numRaces.observe(viewLifecycleOwner) {
-            binding.textView2.text = "Has encontrado ${viewModel.numRaces.value} carreras"
+        viewModel.numRaces.observe(viewLifecycleOwner) { num ->
+            binding.textView2.text = "Has encontrado $num carreras"
         }
-        viewModel.filter.observe(viewLifecycleOwner) {
+        viewModel.filter.observe(viewLifecycleOwner) { filterText ->
             lifecycleScope.launch {
+                val races = viewModel.mLisRaces.value ?: return@launch
+                val filteredList = F.filterList(races, filterText)
                 withContext(Dispatchers.Main) {
-                    DialogManager.showLoadingDialog(requireContext()) // Asegurar que esté en el hilo principal
-                }
-                val filteredList = F.filterList(viewModel.mLisRaces.value, it)
-                withContext(Dispatchers.Main) {
-                    viewModel.setmListRacesFiltered(filteredList) // Actualiza LiveData en Main
-                    DialogManager.dismissLoadingDialog()
+                    if (filteredList != viewModel.mLisRacesFiltered.value) {
+                        viewModel.setmListRacesFiltered(filteredList)
+                    }
                 }
             }
-        }
-        viewModel.mLisRacesFiltered.observe(viewLifecycleOwner) {
-            viewModel.mLisRacesFiltered.value?.let { it1 -> setupRcPartipations(it1) }
-            viewModel.setNumRace(it.size)
         }
         binding.swipeRefreshLayoutRaces.apply {
             this.setProgressViewOffset(true, 200, 400)
@@ -137,6 +140,12 @@ class RacesFragment : Fragment() {
                     binding.swipeRefreshLayoutRaces.isRefreshing = false
 //                    viewModel.setFilter("Tour")
                 }
+            }
+        }
+        viewModel.mLisRacesFiltered.observe(viewLifecycleOwner) { filteredList ->
+            filteredList?.let {
+                setupRcPartipations(it)
+                viewModel.setNumRace(it.size)
             }
         }
     }
