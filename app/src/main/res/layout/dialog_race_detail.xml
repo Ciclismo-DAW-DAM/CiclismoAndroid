@@ -452,6 +452,7 @@
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
+
                         </LinearLayout>
 
                     </LinearLayout>
@@ -492,14 +493,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
+                    <ListView
                         android:id="@+id/listParticipations"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="0" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
