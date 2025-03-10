@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -156,15 +157,214 @@ class RacesFragment : Fragment() {
             try {
                 races = CyclingRepository().getRaces()
                 val a = races.toString()
-                Log.d("MENSAJE",races.toString())
             } catch (e:Exception) {
-                F.showToast(requireContext(),"Algo ha fallado al recibir los datos.")
-                Log.d("MENSAJE",e.message.toString())
+                P[P.S.JSON_RACES] = """
+                  [
+                    {
+                      "id": 1,
+                      "name": "Tour de Francia",
+                      "description": "El evento ciclista más prestigioso del mundo.",
+                      "date": "2025-07-01T10:00:00+00:00",
+                      "distance": 280,
+                      "location": "París, Francia",
+                      "coordinates": { "lat": 48.8566, "lng": 2.3522 },
+                      "unevenness": 18,
+                      "fee": 150,
+                      "slots": 12,
+                      "status": "open",
+                      "category": "Etapas",
+                      "image": "https://example.com/images/tour-francia.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 2,
+                      "name": "Giro de Italia",
+                      "description": "Una de las carreras más icónicas del mundo.",
+                      "date": "2025-05-20T09:00:00+00:00",
+                      "distance": 220,
+                      "location": "Roma, Italia",
+                      "coordinates": { "lat": 41.9028, "lng": 12.4964 },
+                      "unevenness": 15,
+                      "fee": 120,
+                      "slots": 8,
+                      "status": "open",
+                      "category": "Aventura",
+                      "image": "https://example.com/images/giro-italia.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 3,
+                      "name": "Tour de España",
+                      "description": "Una carrera emocionante a través de la península ibérica.",
+                      "date": "2025-06-15T08:00:00+00:00",
+                      "distance": 250,
+                      "location": "Madrid, España",
+                      "coordinates": { "lat": 40.4168, "lng": -3.7038 },
+                      "unevenness": 12,
+                      "fee": 100,
+                      "slots": 5,
+                      "status": "open",
+                      "category": "Montaña",
+                      "image": "https://example.com/images/tour-espana.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 4,
+                      "name": "Vuelta a Colombia",
+                      "description": "Recorriendo las montañas colombianas.",
+                      "date": "2025-08-10T07:00:00+00:00",
+                      "distance": 180,
+                      "location": "Bogotá, Colombia",
+                      "coordinates": { "lat": 4.7110, "lng": -74.0721 },
+                      "unevenness": 20,
+                      "fee": 80,
+                      "slots": 10,
+                      "status": "open",
+                      "category": "Montaña",
+                      "image": "https://example.com/images/vuelta-colombia.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 5,
+                      "name": "Tour de Argentina",
+                      "description": "Carrera por los paisajes argentinos.",
+                      "date": "2025-09-25T09:30:00+00:00",
+                      "distance": 200,
+                      "location": "Buenos Aires, Argentina",
+                      "coordinates": { "lat": -34.6037, "lng": -58.3816 },
+                      "unevenness": 12,
+                      "fee": 90,
+                      "slots": 7,
+                      "status": "open",
+                      "category": "Aventura",
+                      "image": "https://example.com/images/tour-argentina.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 6,
+                      "name": "Desafío de Verano",
+                      "description": "Una carrera desafiante en el caluroso verano.",
+                      "date": "2025-06-15T09:00:00+00:00",
+                      "distance": 75,
+                      "location": "Montañas de la Sierra",
+                      "coordinates": { "lat": 19.1234, "lng": -99.5678 },
+                      "unevenness": 500,
+                      "fee": 30,
+                      "slots": 50,
+                      "status": "open",
+                      "category": "Femenino",
+                      "image": "https://example.com/images/desafio_verano.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 7,
+                      "name": "Maratón de Otoño",
+                      "description": "Una maratón espectacular en el otoño.",
+                      "date": "2025-09-20T09:00:00+00:00",
+                      "distance": 100,
+                      "location": "Ciudad de México",
+                      "coordinates": { "lat": 19.4326, "lng": -99.1332 },
+                      "unevenness": 300,
+                      "fee": 40,
+                      "slots": 75,
+                      "status": "closed",
+                      "category": "Élite",
+                      "image": "https://example.com/images/maraton_otoño.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 8,
+                      "name": "Tour de Francia",
+                      "description": "El evento ciclista más prestigioso del mundo.",
+                      "date": "2025-07-01T10:00:00+00:00",
+                      "distance": 280,
+                      "location": "París, Francia",
+                      "coordinates": { "lat": 48.8566, "lng": 2.3522 },
+                      "unevenness": 18,
+                      "fee": 150,
+                      "slots": 12,
+                      "status": "completed",
+                      "category": "Etapas",
+                      "image": "https://example.com/images/tour-francia.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 9,
+                      "name": "Giro de Italia",
+                      "description": "Una de las carreras más icónicas del mundo.",
+                      "date": "2025-05-20T09:00:00+00:00",
+                      "distance": 220,
+                      "location": "Roma, Italia",
+                      "coordinates": { "lat": 41.9028, "lng": 12.4964 },
+                      "unevenness": 15,
+                      "fee": 120,
+                      "slots": 8,
+                      "status": "open",
+                      "category": "Aventura",
+                      "image": "https://example.com/images/giro-italia.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 10,
+                      "name": "Tour de España",
+                      "description": "Una carrera emocionante a través de la península ibérica.",
+                      "date": "2025-06-15T08:00:00+00:00",
+                      "distance": 250,
+                      "location": "Madrid, España",
+                      "coordinates": { "lat": 40.4168, "lng": -3.7038 },
+                      "unevenness": 12,
+                      "fee": 100,
+                      "slots": 5,
+                      "status": "completed",
+                      "category": "Montaña",
+                      "image": "https://example.com/images/tour-espana.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 11,
+                      "name": "Vuelta a Colombia",
+                      "description": "Recorriendo las montañas colombianas.",
+                      "date": "2025-08-10T07:00:00+00:00",
+                      "distance": 180,
+                      "location": "Bogotá, Colombia",
+                      "coordinates": { "lat": 4.7110, "lng": -74.0721 },
+                      "unevenness": 20,
+                      "fee": 80,
+                      "slots": 10,
+                      "status": "open",
+                      "category": "Aventura",
+                      "image": "https://example.com/images/vuelta-colombia.jpg",
+                      "participants": []
+                    },
+                    {
+                      "id": 12,
+                      "name": "Tour de Argentina",
+                      "description": "Una carrera que atraviesa los paisajes argentinos.",
+                      "date": "2025-09-05T06:00:00+00:00",
+                      "distance": 200,
+                      "location": "Buenos Aires, Argentina",
+                      "coordinates": { "lat": -34.6037, "lng": -58.3816 },
+                      "unevenness": 10,
+                      "fee": 90,
+                      "slots": 15,
+                      "status": "completed",
+                      "category": "Etapas",
+                      "image": "https://example.com/images/tour-argentina.jpg",
+                      "participants": []
+                    }
+                  ]
+                """.trimIndent()
+                races = F.parseJsonToList(P.get(P.S.JSON_RACES))
+                F.showToast(
+                    requireContext(),
+                    "Algo ha fallado al recibir los datos. Se mostarán los datos de prueba",
+                    Toast.LENGTH_SHORT,
+                    R.color.red_spring)
+            }finally {
+                viewModel.setmListRaces(races)
+                viewModel.setmListRacesFiltered(races)
             }
         }
-
-        viewModel.setmListRaces(races)
-        viewModel.setmListRacesFiltered(races)
         //viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
     }
 

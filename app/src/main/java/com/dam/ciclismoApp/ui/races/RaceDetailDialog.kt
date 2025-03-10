@@ -44,10 +44,8 @@ object RaceDetailDialog{
                 txtUneveness.setText(item.unevenness.toString())
                 txtCategory.setText(item.category)
                 //Añadir dato del género (mas, fem, todos)
-                var coords = item.coordinates
-                    .replace("lat=", "")
-                    .replace("lng=", "")
-                    .replace(" ", "")
+                var coords = item.coordinates.lat.toString() + "," + item.coordinates.lng
+
                 initMap(webView, coords)
                 //Cargar participantes si existen
                 //Acción botón inscribirse
