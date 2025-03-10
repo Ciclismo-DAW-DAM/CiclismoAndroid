@@ -3,6 +3,7 @@ package com.dam.ciclismoApp.ui.participations
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -134,6 +135,7 @@ class ParticipationsFragment : Fragment() {
         lifecycleScope.launch {
             try {
                 participaciones = UsersRepository().getUser(User().fromJson(P.get(P.S.JSON_USER)).id).cyclingParticipants
+                Log.d("MENSAJE",participaciones.toString())
             } catch (e:Exception) {
                 F.showToast(requireContext(),"Algo ha fallado al recibir los datos.")
             }
@@ -141,7 +143,7 @@ class ParticipationsFragment : Fragment() {
             viewModel.setmListParticipations(participaciones)
         }*/
 
-        viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
+        //viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
     }
 
     //region [RC & data]

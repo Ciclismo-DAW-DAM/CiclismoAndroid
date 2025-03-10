@@ -10,7 +10,7 @@ class CyclingRepository {
     val cyclingApi:CyclingApi
     init {
         cyclingApi = Retrofit.Builder()
-            .baseUrl("http://192.168.40.87:8000/api/")
+            .baseUrl("http://192.168.0.17:8000/api/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()

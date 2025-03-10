@@ -151,18 +151,21 @@ class RacesFragment : Fragment() {
     }
 
     private fun initData() {
-        /*var races:List<Race> = emptyList()
+        var races:List<Race> = emptyList()
         lifecycleScope.launch {
             try {
                 races = CyclingRepository().getRaces()
+                val a = races.toString()
+                Log.d("MENSAJE",races.toString())
             } catch (e:Exception) {
                 F.showToast(requireContext(),"Algo ha fallado al recibir los datos.")
+                Log.d("MENSAJE",e.message.toString())
             }
+        }
 
-            viewModel.setmListRaces(races)
-        }*/
-
-        viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
+        viewModel.setmListRaces(races)
+        viewModel.setmListRacesFiltered(races)
+        //viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
     }
 
     //region [RC & data]

@@ -7,16 +7,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import retrofit2.http.Body
+import retrofit2.http.Header
 
 class ParticipantsRepository {
     val participantsApi:ParticipantsApi
     init {
         participantsApi = Retrofit.Builder()
-            .baseUrl("http://192.168.40.87:8000/api/")
+            .baseUrl("http://192.168.0.17:8000/api/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
     }
 
-    suspend fun addParticipant(@Body registration: Registration):Participant = participantsApi.addParticipant(registration)
+    suspend fun addParticipant(token:String, @Body registration: Registration):Participant = participantsApi.addParticipant(token,registration)
 }
