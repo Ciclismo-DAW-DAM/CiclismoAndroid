@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -88,6 +89,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 """.trimIndent()
             }
             finally {
+                F.showToast(
+                    requireContext(),
+                    "Algo ha fallado al recibir los datos. Se mostarán los datos de prueba",
+                    Toast.LENGTH_SHORT,
+                    R.color.red_spring)
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish() // Cierra AuthActivity

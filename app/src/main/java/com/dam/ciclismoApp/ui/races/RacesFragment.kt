@@ -153,6 +153,7 @@ class RacesFragment : Fragment() {
 
     private fun initData() {
         var races:List<Race> = emptyList()
+        DialogManager.showLoadingDialog(requireContext())
         lifecycleScope.launch {
             try {
                 races = CyclingRepository().getRaces()
@@ -363,9 +364,9 @@ class RacesFragment : Fragment() {
             }finally {
                 viewModel.setmListRaces(races)
                 viewModel.setmListRacesFiltered(races)
+                DialogManager.dismissLoadingDialog()
             }
         }
-        //viewModel.setmListRaces(F.parseJsonToList(P.get(P.S.JSON_RACES)))
     }
 
     //region [RC & data]

@@ -7,18 +7,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import coil3.request.placeholder
 import coil3.request.error
 import com.dam.ciclismoApp.R
-import com.dam.ciclismoApp.databinding.DialogParticipantBinding
 import com.dam.ciclismoApp.databinding.FragmentParticipationsBinding
 import com.dam.ciclismoApp.databinding.ItemRcParticipationBinding
 import com.dam.ciclismoApp.models.objects.Participant
@@ -27,7 +25,6 @@ import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.ui.races.RaceDetailDialog
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
-import com.dam.ciclismoApp.utils.F.Companion.parseJsonToList
 import com.dam.ciclismoApp.utils.GridSpacingItemDecoration
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.utils.RecyclerAdapter
@@ -131,19 +128,199 @@ class ParticipationsFragment : Fragment() {
     }
 
     private fun initData() {
-        /*var participaciones:List<Participant> = emptyList()
+        var participaciones:List<Participant> = emptyList()
+        DialogManager.showLoadingDialog(requireContext())
         lifecycleScope.launch {
             try {
                 participaciones = UsersRepository().getUser(User().fromJson(P.get(P.S.JSON_USER)).id).cyclingParticipants
-                Log.d("MENSAJE",participaciones.toString())
             } catch (e:Exception) {
-                F.showToast(requireContext(),"Algo ha fallado al recibir los datos.")
+                P[P.S.JSON_PARTICIPANTS] = """
+                [
+                  {
+                    "id": 1,
+                    "user": {
+                      "id": 101,
+                      "email": "juan.perez@example.com",
+                      "roles": ["ROLE_USER"],
+                      "name": "Juan Pérez",
+                      "password": "securepass123",
+                      "banned": false,
+                      "cyclingParticipants": [],
+                      "age": 19,
+                      "gender": "Male",
+                      "image": "https://example.com/images/juan_perez.jpg"
+                    },
+                    "race": {
+                      "id": 201,
+                      "name": "Tour de España",
+                      "description": "Una carrera emocionante a través de la península ibérica.",
+                      "date": "2025-06-15T08:00:00+02:00",
+                      "distance": 250,
+                      "location": "Madrid, España",
+                      "coordinates": { "lat": 48.8566, "lng": 2.3522 },
+                      "unevenness": 12,
+                      "fee": 100.0,
+                      "slots": 5,
+                      "status": "open",
+                      "category": "Montaña",
+                      "image": "https://example.com/images/tour-espana.jpg",
+                      "participants": []
+                    },
+                    "time": "2025-06-15T12:30:45+02:00",
+                    "dorsal": 10,
+                    "banned": false
+                  },
+                  {
+                    "id": 2,
+                    "user": {
+                      "id": 102,
+                      "email": "ana.gomez@example.com",
+                      "roles": ["ROLE_USER"],
+                      "name": "Ana Gómez",
+                      "password": null,
+                      "banned": false,
+                      "cyclingParticipants": [],
+                      "age": 18,
+                      "gender": "Female",
+                      "image": "https://example.com/images/ana_gomez.jpg"
+                    },
+                    "race": {
+                      "id": 202,
+                      "name": "Giro de Italia",
+                      "description": "Una de las carreras más icónicas del mundo.",
+                      "date": "2025-05-20T09:00:00+02:00",
+                      "distance": 220,
+                      "location": "Roma, Italia",
+                      "coordinates": { "lat": 41.9028, "lng": 12.4964 },
+                      "unevenness": 15,
+                      "fee": 120.0,
+                      "slots": 8,
+                      "status": "open",
+                      "category": "Aventura",
+                      "image": "https://example.com/images/giro-italia.jpg",
+                      "participants": []
+                    },
+                    "time": "2025-05-20T13:10:30+02:00",
+                    "dorsal": 22,
+                    "banned": false
+                  },
+                  {
+                    "id": 3,
+                    "user": {
+                      "id": 103,
+                      "email": "carlos.mendez@example.com",
+                      "roles": ["ROLE_USER"],
+                      "name": "Carlos Méndez",
+                      "password": "bikeRider456",
+                      "banned": false,
+                      "cyclingParticipants": [],
+                      "age": 20,
+                      "gender": "Male",
+                      "image": "https://example.com/images/carlos_mendez.jpg"
+                    },
+                    "race": {
+                      "id": 203,
+                      "name": "Tour de Francia",
+                      "description": "El evento ciclista más prestigioso del mundo.",
+                      "date": "2025-07-01T10:00:00+02:00",
+                      "distance": 280.0,
+                      "location": "París, Francia",
+                      "coordinates": { "lat": 40.4168, "lng": -3.7038 },
+                      "unevenness": 18,
+                      "fee": 150.0,
+                      "slots": 12,
+                      "status": "open",
+                      "category": "Etapas",
+                      "image": "https://example.com/images/tour-francia.jpg",
+                      "participants": []
+                    },
+                    "time": "2025-07-01T14:45:20+02:00",
+                    "dorsal": 5,
+                    "banned": false
+                  },
+                  {
+                    "id": 4,
+                    "user": {
+                      "id": 104,
+                      "email": "sofia.lopez@example.com",
+                      "roles": ["ROLE_USER"],
+                      "name": "Sofía López",
+                      "password": "riderSofi",
+                      "banned": false,
+                      "cyclingParticipants": [],
+                      "age": 21,
+                      "gender": "Female",
+                      "image": "https://example.com/images/sofia_lopez.jpg"
+                    },
+                    "race": {
+                      "id": 204,
+                      "name": "Vuelta a Colombia",
+                      "description": "Recorriendo las montañas colombianas.",
+                      "date": "2025-08-10T07:00:00-05:00",
+                      "distance": 180,
+                      "location": "Bogotá, Colombia",
+                      "coordinates": { "lat": 4.7110, "lng": -74.0721 },
+                      "unevenness": 20,
+                      "fee": 80.0,
+                      "slots": 10,
+                      "status": "open",
+                      "category": "Montaña",
+                      "image": "https://example.com/images/vuelta-colombia.jpg",
+                      "participants": []
+                    },
+                    "time": "2025-08-10T11:20:35-05:00",
+                    "dorsal": 32,
+                    "banned": false
+                  },
+                  {
+                    "id": 5,
+                    "user": {
+                      "id": 105,
+                      "email": "lucas.fernandez@example.com",
+                      "roles": ["ROLE_USER"],
+                      "name": "Lucas Fernández",
+                      "password": "fastBike789",
+                      "banned": false,
+                      "cyclingParticipants": [],
+                      "age": 22,
+                      "gender": "Male",
+                      "image": "https://example.com/images/lucas_fernandez.jpg"
+                    },
+                    "race": {
+                      "id": 205,
+                      "name": "Tour de Argentina",
+                      "description": "Carrera por los paisajes argentinos.",
+                      "date": "2025-09-25T09:30:00-03:00",
+                      "distance": 200,
+                      "location": "Buenos Aires, Argentina",
+                      "coordinates": { "lat": 19.1234, "lng": -99.5678 },
+                      "unevenness": 12,
+                      "fee": 90.0,
+                      "slots": 7,
+                      "status": "open",
+                      "category": "Aventura",
+                      "image": "https://example.com/images/tour-argentina.jpg",
+                      "participants": []
+                    },
+                    "time": "2025-09-25T14:00:50-03:00",
+                    "dorsal": 44,
+                    "banned": false
+                  }
+                ]
+                """.trimIndent()
+                participaciones = F.parseJsonToList(P.get(P.S.JSON_PARTICIPANTS))
+                F.showToast(
+                    requireContext(),
+                    "Algo ha fallado al recibir los datos. Se mostarán los datos de prueba",
+                    Toast.LENGTH_SHORT,
+                    R.color.red_spring)
+            }finally {
+                viewModel.setmListParticipations(participaciones)
+                viewModel.setmListParticipationsFiltered(participaciones)
+                DialogManager.dismissLoadingDialog()
             }
 
-            viewModel.setmListParticipations(participaciones)
-        }*/
-
-        //viewModel.setmListParticipations(parseJsonToList(P.get(P.S.JSON_PARTICIPANTS)))
+        }
     }
 
     //region [RC & data]
