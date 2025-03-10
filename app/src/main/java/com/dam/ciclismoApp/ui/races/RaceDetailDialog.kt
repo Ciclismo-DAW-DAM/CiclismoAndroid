@@ -9,13 +9,23 @@ import coil3.request.placeholder
 import com.dam.ciclismoApp.R
 import com.dam.ciclismoApp.databinding.DialogRaceDetailBinding
 import com.dam.ciclismoApp.models.objects.Race
+import com.dam.ciclismoApp.models.repositories.ParticipantsRepository
 import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-object RaceDetailDialog{
+object RaceDetailDialog {
     fun setupRcDetailDialog(item: Race, context: Context, layoutInflater: LayoutInflater) {
         val dialogBinding = DialogRaceDetailBinding.inflate(layoutInflater)
         DialogManager.showCustomDialog(context, dialogBinding, false) { dialog ->
+                // Obtener participaciones antes de cargar el mapa
+                CoroutineScope(Dispatchers.Main).launch {
+                    val participations = withContext(Dispatchers.IO) {
+                        //CARGAR PARTICIPACIONES
+                }}
             dialogBinding.apply {
                 imgCloseButton.setOnClickListener {
                     dialog.dismiss()
@@ -63,28 +73,28 @@ object RaceDetailDialog{
             loadWithOverviewMode = true
         }
         val mapHtml = """
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-                <style> 
-                    html, body { margin: 0; padding: 0; height: 100%; }  
-                    #map { height: 100vh; width: 100vw; } 
-                </style>
-            </head>
-            <body>
-                <div id="map"></div>
-                <script>
-                    var coords = [$coords];
-                    var map = L.map('map').setView(coords, 13);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-                    var marker = L.marker(coords).addTo(map);
-                </script>
-            </body>
-            </html>
-        """.trimIndent()
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+            <style> 
+                html, body { margin: 0; padding: 0; height: 100%; }  
+                #map { height: 100vh; width: 100vw; } 
+            </style>
+        </head>
+        <body>
+            <div id="map"></div>
+            <script>
+                var coords = [$coords];
+                var map = L.map('map').setView(coords, 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                var marker = L.marker(coords).addTo(map);
+            </script>
+        </body>
+        </html>
+    """.trimIndent()
 
 
         webView.loadDataWithBaseURL(null, mapHtml, "text/html", "UTF-8", null)
@@ -94,4 +104,5 @@ object RaceDetailDialog{
         //Temporal
         return 69
     }
+
 }

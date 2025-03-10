@@ -19,5 +19,6 @@ class ParticipantsRepository {
             .create()
     }
 
-    suspend fun addParticipant(token:String, @Body registration: Registration):Participant = participantsApi.addParticipant(token,registration)
+    suspend fun addParticipant(@Body registration: Registration):Participant = participantsApi.addParticipant(registration)
+    suspend fun removeParticipant(@Body registration: Registration):Participant = participantsApi.removeParticipant(registration)
 }
