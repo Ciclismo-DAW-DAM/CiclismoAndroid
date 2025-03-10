@@ -18,7 +18,7 @@ data class User(
     var password:String?,
     var banned:Boolean,
     @Json(name = "cyclingParticipants") val cyclingParticipants:List<Participant>,
-    var age:String,
+    var age:Int,
     var gender:String,
     var image:String,
     var oldpassword:String?,
@@ -32,7 +32,7 @@ data class User(
         password = "",
         banned = false,
         cyclingParticipants = emptyList(),
-        age = "",
+        age = 0,
         gender = "",
         image = "",
         oldpassword = "",
@@ -53,12 +53,4 @@ data class User(
         return checkNotNull(usuario)
     }
 
-    fun getFechaComoOffsetDateTime(): OffsetDateTime =
-        OffsetDateTime.parse(age, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-
-    fun getAgeInYears(): Int {
-        val nacimiento = getFechaComoOffsetDateTime()
-        val ahora = OffsetDateTime.now()
-        return ChronoUnit.YEARS.between(nacimiento,ahora).toInt()
-    }
 }

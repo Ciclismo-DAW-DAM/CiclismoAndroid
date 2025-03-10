@@ -168,7 +168,7 @@ class ProfileFragment : Fragment() {
             viewModel.setUser(user)
             viewModel.setName(user.name)
             viewModel.setMail(user.email)
-            viewModel.setAge(user.getAgeInYears())
+            viewModel.setAge(user.age)
             viewModel.setGender(user.gender)
 
             val participaciones = user.cyclingParticipants

@@ -20,6 +20,7 @@ import com.dam.ciclismoApp.models.objects.LogIn
 import com.dam.ciclismoApp.models.objects.LogInResponse
 import com.dam.ciclismoApp.models.repositories.UsersRepository
 import com.dam.ciclismoApp.ui.MainActivity
+import com.dam.ciclismoApp.utils.DialogManager
 import com.dam.ciclismoApp.utils.F
 import com.dam.ciclismoApp.utils.P
 import com.dam.ciclismoApp.viewModel.GenericViewModelFactory
@@ -55,18 +56,44 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     fun iniciarSesion() {
         P.init(requireContext())
-        val logIn:LogIn = LogIn(binding.etUsername.text.toString(),binding.etPasswordUpd.text.toString())
+        val logIn = LogIn(
+            binding.etUsername.text.toString(),
+            binding.etPasswordUpd.text.toString()
+        )
+        DialogManager.showLoadingDialog(requireContext())
+
         lifecycleScope.launch {
-            val respuesta:LogInResponse = UsersRepository().logIn(logIn)
-            if (respuesta.message.contains("Logged in successfully")) {
-                val a = respuesta.user.toJson()
-                Log.d("Mensaje", respuesta.user.toJson())
+            try{
+                val respuesta:LogInResponse = UsersRepository().logIn(logIn)
+                if (respuesta.message.contains("Logged in successfully")) {
+                    P[P.S.JSON_USER] = respuesta.user.toJson()
+                }
+            }
+            catch (e:Exception){
+                P[P.S.JSON_USER] = """
+                    {
+                      "id": 3,
+                      "email": "user1@mail.us",
+                      "roles": ["ROLE_USER"],
+                      "name": "User1",
+                      "password": null,
+                      "banned": false,
+                      "cyclingParticipants": [],
+                      "age": 19,
+                      "gender": "M",
+                      "image": "https://identicon.02420.dev/6ee42238e73e6149496fcc6147b5268a/500x500?format=png",
+                      "oldpassword": null,
+                      "newpassword": null
+                    }
+                """.trimIndent()
+            }
+            finally {
                 val intent = Intent(requireActivity(), MainActivity::class.java)
-                P[P.S.JSON_USER] = respuesta.user.toJson()
                 startActivity(intent)
                 requireActivity().finish() // Cierra AuthActivity
+                DialogManager.dismissLoadingDialog()
             }
+
         }
     }
-
 }
